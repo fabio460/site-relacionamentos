@@ -30,25 +30,12 @@ export default function Cadastro() {
     }else{
         invalido('validationDefault01')
     }
-
-    // if(email === ''){
-    //     valido('validationDefaultUsername')
-    // }else{
-    //     invalido('validationDefaultUsername')
-    // }
-
-
-    // if (imagemPerfil === 'https://thumbs.dreamstime.com/b/imita%C3%A7%C3%A3o-do-fundo-transparente-69028332.jpg') {
-    //     valido('inputImage')
-    // }else{
-    //     invalido('inputImage')
-    // }
   }
  
   return (
     <div classNameName='cadastroContainer'>
 
-        <form className="row g-3">
+        <form className="row" style={{width:"90%",margin:'20px auto'}}>
             <div className='col-md-2' style={{display:'flex',justifyContent:"center"}} >
                 <img className='img-thumbnail img-fluid' src={imagemPerfil} alt='' />
             </div>
