@@ -12,29 +12,61 @@ export default function Cadastro() {
 
   const [nome,setNome]=useState('')
   const [email,setEmail]=useState('')
+  const [senha,setSenha]=useState('')
+  const [confirSenha,setConfirmsenha]=useState('')
 
 
-  function valido(id) {
-    document.getElementById(id).classNameList.remove('is-valid')
-    document.getElementById(id).classNameList.add('is-invalid')
+
+  function validaCampoNulo(Id,campo) {
+    function invalido(id) {
+        console.log(document.getElementById(id))
+        document.getElementById(id).classList.remove('is-valid')
+        document.getElementById(id).classList.add('is-invalid')
+      }
+      function valido(id) {
+        document.getElementById(id).classList.remove('is-invalid')
+        document.getElementById(id).classList.add('is-valid')
+      }
+
+      if(campo === ''){
+        invalido(Id)
+      }else{
+            valido(Id)
+      }
   }
-  function invalido(id) {
-    document.getElementById(id).classNameList.remove('is-invalid')
-    document.getElementById(id).classNameList.add('is-valid')
-  }
 
+  function validaSenha(Id,campo) {
+    function invalido(id) {
+        console.log(document.getElementById(id))
+        document.getElementById(id).classList.remove('is-valid')
+        document.getElementById(id).classList.add('is-invalid')
+      }
+      function valido(id) {
+        document.getElementById(id).classList.remove('is-invalid')
+        document.getElementById(id).classList.add('is-valid')
+      }
+
+      if (senha !== confirSenha) {
+        invalido(Id)
+      } else {
+        valido(Id)
+      }
+      if(campo === ''){
+        invalido(Id)
+      }else{
+            valido(Id)
+      }
+  }
+  
   const enviar = (e)=>{
     //e.preventDefault()
-    if(nome === ''){
-        valido('validationDefault01')
-    }else{
-        invalido('validationDefault01')
-    }
+    validaCampoNulo('validationDefault01',nome)
+    validaSenha('senha',senha)
+    validaSenha('validationDefault07',confirSenha)
   }
  
   return (
     <div classNameName='cadastroContainer'>
-
         <form className="row" style={{width:"90%",margin:'20px auto'}}>
             <div className='col-md-2' style={{display:'flex',justifyContent:"center"}} >
                 <img className='img-thumbnail img-fluid' src={imagemPerfil} alt='' />
@@ -46,12 +78,13 @@ export default function Cadastro() {
                         <label for="validationDefaultUsername" className="form-label">Imagem</label>
                         <input type="file" className="form-control" aria-label="file example" id='inputImage'
                             onChange={onSelectFile}
-                            required
+                            
                         />
                         <div className="invalid-feedback">Esse campo não pode ser nulo</div>
                     </div>
                     <div className="col-md-4">
-                        <label for="validationDefault01" className="form-label">Nome</label>
+                        <label for="validationDefault01 " className="form-label">Nome</label>
+                        
                         <input id="validationDefault01" onChange={(e=>setNome(e.target.value))} type="text" className="form-control"  required/>
                         <div className="invalid-feedback">campo inválido</div>
                     </div>
@@ -61,22 +94,24 @@ export default function Cadastro() {
                         <span className="input-group-text" id="inputGroupPrepend2">@</span>
                         <input 
                           onChange={(e=>setEmail(e.target.value))}
-                          type="email" className="form-control" id="validationDefaultUsername"  aria-describedby="inputGroupPrepend2" required/>
+                          type="email" className="form-control is-invalid" id="validationDefaultUsername"  aria-describedby="inputGroupPrepend2" required/>
                         </div>
                     </div>
                     <div className="col-md-6">
                         <label for="validationDefault03" className="form-label">Cidade</label>
                         <input type="text" className="form-control" id="validationDefault03" required/>
+                        <div className="invalid-feedback">campo inválido</div>
                     </div>
                     <div className="col-md-3">
 
 
-                        <label for="validationDefault06" className="form-label">Senha</label>
-                        <input type="text" className="form-control" id="validationDefault06" required/>
+                        <label for="senha" className="form-label">Senha</label>
+                        <input type="text" className="form-control" id="senha" onChange={e=>setSenha(e.target.value)} required/>
                     </div>
                     <div className="col-md-3">
                     <label for="validationDefault07" className="form-label">Confirmar senha</label>
-                        <input type="text" className="form-control" id="validationDefault07" required/>
+                        <input type="text" className="form-control" id="validationDefault07" onChange={(e=>setConfirmsenha(e.target.value))} required/>
+                        <div className="invalid-feedback">campo inválido</div>
                     </div>
 
                     <Divider sx={{margin:'30px 0px'}}/>
