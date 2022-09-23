@@ -16,13 +16,13 @@
     display: none;
 }
 .HomeRightHeader{
-    background-color: lightblue;
+    background-color: #0288d1;
     margin-bottom: 100px;
     display: flex;
     height: 150px;
 }
 .btnMobileAppBar{
-    margin: 5px 10px;
+    margin: 0px 0px 15px 15px;
 }
 .homeContainer{
     display: flex;
@@ -36,7 +36,7 @@
     display: flex;
     margin: 3%;
     padding: 3%;
-    border: solid black 1px;
+
     border-radius: 3px;
     cursor: pointer;
 }

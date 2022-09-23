@@ -14,8 +14,12 @@ export default function Cadastro() {
   const [email,setEmail]=useState('')
   const [senha,setSenha]=useState('')
   const [confirSenha,setConfirmsenha]=useState('')
-
-
+  const [cidade,setCidade]=useState('')
+  const [estado,setEstado]=useState('')
+  const [cep,setCep]=useState('')
+  const [bairro,setBairro]=useState('')
+  const [numero,setNumero]=useState('')
+  const [complemento,setComplemento]=useState('')
 
   function validaCampoNulo(Id,campo) {
     function invalido(id) {
@@ -98,7 +102,7 @@ export default function Cadastro() {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <label for="validationDefault03" className="form-label">Cidade</label>
+                        <label for="validationDefault03" className="form-label">Profissão</label>
                         <input type="text" className="form-control" id="validationDefault03" required/>
                         <div className="invalid-feedback">campo inválido</div>
                     </div>
@@ -116,17 +120,44 @@ export default function Cadastro() {
 
                     <Divider sx={{margin:'30px 0px'}}/>
 
-                    <h3>Aparência</h3>
-                    <div className="col-md-3">
+                    <h3>Localidade</h3>
+                    {/* <div className="col-md-3">
                         <label for="validationDefault04" className="form-label">Genero</label>
                         <select className="form-select" id="validationDefault04" required>
                         <option selected disabled value="">...</option>
                         <option>Masculino</option>
                         <option>Feminino</option>
                         </select>
+                    </div> */}
+
+                    <div className='col-md-3'>
+                        <label for="cep" className="form-label">Cep</label>
+                        <input type="text" className="form-control" id="cep" onChange={e=>setCep(e.target.value)} required/>
+                    </div>
+                    <div className='col-md-3'>
+                        <label for="cidade" className="form-label">Cidade</label>
+                        <input type="text" className="form-control" id="cidade" onChange={e=>setCidade(e.target.value)} required/>
+                    </div>
+                    <div className='col-md-6'>
+                        <label for="estado" className="form-label">Estado</label>
+                        <input type="text" className="form-control" id="estado" onChange={e=>setEstado(e.target.value)} required/>
                     </div>
 
-                    <div className="col-md-3">
+                    <div className='col-md-4'>
+                        <label for="bairro" className="form-label">Bairro</label>
+                        <input type="text" className="form-control" id="bairro" onChange={e=>setBairro(e.target.value)} required/>
+                    </div>
+                    <div className='col-md-4'>
+                        <label for="numero" className="form-label">Numero</label>
+                        <input type="text" className="form-control" id="numero" onChange={e=>setNumero(e.target.value)} required/>
+                    </div>
+                    <div className='col-md-4'>
+                        <label for="complemento" className="form-label">Complemento</label>
+                        <input type="text" className="form-control" id="complemento" onChange={e=>setComplemento(e.target.value)} required/>
+                    </div>
+
+
+                    {/* <div className="col-md-3">
                         <label for="validationDefault04" className="form-label">Cor</label>
                         <select className="form-select" id="validationDefault04" required>
                         <option selected disabled value="">...</option>
@@ -160,7 +191,7 @@ export default function Cadastro() {
                         <option>um pouco acima do peso</option>
                         <option>muito acima do peso</option>
                         </select>                        
-                    </div>
+                    </div> */}
 
                 </div>
                 <Divider sx={{margin:'30px 0px'}}/>

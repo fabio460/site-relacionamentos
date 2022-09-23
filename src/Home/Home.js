@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
+import Header from '../AppBar/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,32 +12,8 @@ import { ListItemIcon, Tooltip } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import HomeLeft from './HomeLeft/HomeLeft';
 import HomeRight from './HomeRight.js/HomeRight';
-function ElevationScroll(props) {
-  const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({
-    disableHysteresis: true,
-    threshold: 0,
-    target: window ? window() : undefined,
-  });
 
-  return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0,
-  });
-}
-
-ElevationScroll.propTypes = {
-  children: PropTypes.element.isRequired,
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
-
-export default function Home(props) {
+export default function Home() {
   const [styleHomeLeft,setStyleHomeLeft]= useState({
     marginLeft: '0%',
     width: '100%',
@@ -98,10 +74,13 @@ export default function Home(props) {
   }
   return (
     <React.Fragment>
+      <div style={{background:'',height:'70px'}}>
+        <Header/>
+      </div>
       <CssBaseline />
         <div className='btnMobileAppBar'>
-          <Tooltip >
-            <ArrowBackIosIcon sx={btnStyle} onClick={handleLayout}/>
+          <Tooltip sx={btnStyle}>
+            <ArrowBackIosIcon  onClick={handleLayout}/>
           </Tooltip>
         </div>
       

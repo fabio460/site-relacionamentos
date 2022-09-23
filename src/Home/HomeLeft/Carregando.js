@@ -11,7 +11,7 @@ export default function Carregando() {
         </div>
         <div>
             <div className='elementoDaListaNome'>
-               <Skeleton variant="text" sx={{ fontSize: '1rem',width:"200px" }} />
+               <Skeleton variant="text" sx={{ fontSize: '1rem',width:"270px" }} />
             </div>
             <div className='elementoDaListaProfissao'>
                <Skeleton variant="text" sx={{ fontSize: '1rem' }} />

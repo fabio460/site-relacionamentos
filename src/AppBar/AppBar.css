@@ -1,0 +1,9 @@
+.AppBarAvatar{
+    display: none;
+}
+
+@media (max-width:400px) {
+    .AppBarAvatar{
+       display: block;
+    }
+}
