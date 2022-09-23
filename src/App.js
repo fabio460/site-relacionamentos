@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Cadastro from './Cadastro/Cadastro';
 import Home from './Home/Home';
+
 import Login from './Login/Login';
 
 function App() {

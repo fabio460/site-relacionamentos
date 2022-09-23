@@ -1,4 +1,4 @@
-import { Avatar } from '@mui/material'
+import { Avatar, ListItem, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
@@ -13,21 +13,21 @@ export default function ElementoDaLista({item,handleLayout}) {
         handleLayout()
      }
   return (
-    <div className='elementoDaLista' onClick={()=> getItem(item)}>
-        <div className='elementoDaListaAvatar'>
-           <Avatar  src={item.avatar} alt={item.userName}/>
-        </div>
-        <div>
-            <div className='elementoDaListaNome'>
-             Nome: {item.userName}
+    <ListItemButton className='' onClick={()=> getItem(item)}>
+        <ListItem  disablePadding>
+          <ListItemAvatar>
+            <Avatar  src={item.avatar} alt={item.userName}>
+              
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary={item.userName} secondary={
+            <div>
+              <div>Prof: {item.profissao}</div>
+              <div>Cidade: {item.cidade}</div>
             </div>
-            <div className='elementoDaListaProfissao'>
-               Profissão: {item.profissao}
-            </div>
-            <div className='elementoDaListaCidade'>
-              Cidade: {item.cidade}
-            </div>
-        </div>
-    </div>
+          
+          } />
+      </ListItem>
+    </ListItemButton>
   )
 }

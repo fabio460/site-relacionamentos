@@ -1,7 +1,8 @@
+import { List } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import Carregando from './Carregando'
 import ElementoDaLista from './ElementoDaLista'
-export default function HomeLeft({handleLayout}) {
+export default function HomeLeft({handleLayout,a11yProps}) {
   const [list,setList]=useState([])  
   const [visible,setVisible]=useState(true)
   async function getUsuarios() {
@@ -9,6 +10,7 @@ export default function HomeLeft({handleLayout}) {
       .then(res=>res.json())
       setList(l.reverse())
       setVisible(false)
+      
   }  
   useEffect(()=>{
     getUsuarios()
@@ -22,9 +24,9 @@ export default function HomeLeft({handleLayout}) {
           })
         }
         {list.map((item,key)=>{
-            return <div key={key}>
-                <ElementoDaLista item={item} key={key} handleLayout={handleLayout}/>
-            </div>
+            return <List key={key} sx={{ bgcolor: 'background.paper' }}>
+                <ElementoDaLista item={item} key={key} handleLayout={handleLayout} />
+            </List>
         })}
     </div>
   )

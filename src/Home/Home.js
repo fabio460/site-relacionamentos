@@ -71,8 +71,8 @@ export default function Home(props) {
         display:'block'
        })
        setBtnstyle({
-        transform: 'rotate(180deg)',
-        color:'white',
+        transform: 'rotate(-180deg)',
+        color:'black',
         transition:"0.3s"
        })
        setSelecionado(!selecionado)
@@ -90,7 +90,8 @@ export default function Home(props) {
        })
        setBtnstyle({
         transform: 'rotate(0deg)',
-        transition:"0.3s"
+        transition:"0.3s",
+        color:'black',
        })
     }
     
@@ -98,20 +99,12 @@ export default function Home(props) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <ElevationScroll {...props}>
-        <AppBar sx={{background:'',height:'8vh'}}>
-          <Toolbar>
-            <Typography variant="h6" component="div">
-               <div className='btnMobileAppBar'>
-                <Tooltip >
-                  <ArrowBackIosIcon sx={btnStyle} onClick={handleLayout}/>
-                </Tooltip>
-               </div>
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </ElevationScroll>
-      <Toolbar />
+        <div className='btnMobileAppBar'>
+          <Tooltip >
+            <ArrowBackIosIcon sx={btnStyle} onClick={handleLayout}/>
+          </Tooltip>
+        </div>
+      
       <div className='homeContainer'>
         <div className='homeMobileLeft' style={styleHomeLeft}>
            <HomeLeft handleLayout={handleLayout}/>

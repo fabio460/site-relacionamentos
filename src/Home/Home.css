@@ -21,13 +21,12 @@
     display: flex;
     height: 150px;
 }
-.HomeRightContainer{
-    
-
+.btnMobileAppBar{
+    margin: 5px 10px;
 }
 .homeContainer{
     display: flex;
-    width: 80%;
+    width: 100%;
     margin: auto;
 }
 .HomeRightNome{
