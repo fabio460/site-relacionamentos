@@ -193,9 +193,11 @@ export default function Cadastro() {
                         </select>                        
                     </div> */}
 
-                </div>
+                </div>              
+                <label for="complemento" className="form-label">Descreva o que faz</label>
+                <textarea class="form-control" aria-label="With textarea"></textarea>
+             
                 <Divider sx={{margin:'30px 0px'}}/>
-                <h3>Personalidade</h3>
                 <div className="col-12" style={{paddingBottom:'20px'}}>
                     <button className="btn btn-primary" style={{marginRight:'30px'}} type="" onClick={enviar}>Cadastrar</button>
                     <button className='btn btn-danger' onClick={()=>navigate('/')}>voltar ao login</button>
