@@ -10,6 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { Avatar } from '@mui/material';
 export default function Login() {
 
   const [values, setValues] = React.useState({showPassword: false});
@@ -91,52 +92,76 @@ export default function Login() {
       }
 
 
-    if(usuario){
-      alert("usuario(a) "+usuario.email+" conectado com sucesso")
-    }
+      if(usuario){
+        alert("usuario(a) "+usuario.email+" conectado com sucesso")
+      }
   }
 
   return (
     <div className='loginContainer'>
-      <h1 >Login</h1>
-      <div className='loginBody'>
-        <TextField
-           error={ErroDeEmail}
-           label={'email'}
-           size='small'
-           onChange={e=>setemail(e.target.value)}
-        />
-        {ErroDeEmail &&
-           <div className='labelEmail'>{LabelEmail}</div>
-        }
-        <FormControl sx={{ marginTop:"20px"}} variant="outlined" size='small'>
-          <InputLabel htmlFor="outlined-adornment-password">senha</InputLabel>
-          <OutlinedInput
-            error={ErroDeSenha}
-            id="outlined-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
+          <div className='loginBodyLeft'>
+           
+            <h2 style={{display:"flex"}}>            
+              <Avatar 
+                 sx={{marginRight:"10px"}}
+                 src={'https://i.pinimg.com/236x/37/a5/2c/37a52cb19aabbff43eb7346dc71a68ab.jpg'}>
+              </Avatar>
+              <span>Bicos FS </span>  
+            </h2>
+            <div>
+                <h1>Você possui uma conta?</h1> 
+                <div>
+                  Registre-se para acessar funcionalidades,
+                  encontrar profissionais e conseguir trabalhos freelancer  
+                </div>
+                <div className='loginLeftIcones'>
+                  <Avatar sx={{width:"30px",height:"30px"}}>GH</Avatar>
+                  <Avatar sx={{width:"30px",height:"30px"}}>F</Avatar>
+                  <Avatar sx={{width:"30px",height:"30px"}}>T</Avatar>
+                </div>
+            </div>  
+            
+          </div>
+          <div className='loginBodyRight'>
+            <h1 >Login</h1>
+            <TextField
+              error={ErroDeEmail}
+              label={'email'}
+              size='small'
+              onChange={e=>setemail(e.target.value)}
+            />
+            {ErroDeEmail &&
+              <div className='labelEmail'>{LabelEmail}</div>
             }
-            label='password'
-          />
-        </FormControl>
-        {ErroDeSenha &&
-          <div className='labelSenha'>{LabelSenha}</div>
-        }
-        <Button sx={{marginTop:"20px"}} variant="contained" onClick={logar}>Logar</Button>
-      </div>
+            <FormControl sx={{ marginTop:"20px"}} variant="outlined" size='small'>
+              <InputLabel htmlFor="outlined-adornment-password">senha</InputLabel>
+              <OutlinedInput
+                error={ErroDeSenha}
+                id="outlined-adornment-password"
+                type={values.showPassword ? 'text' : 'password'}
+                value={values.password}
+                onChange={handleChange('password')}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label='password'
+              />
+            </FormControl>
+            {ErroDeSenha &&
+              <div className='labelSenha'>{LabelSenha}</div>
+            }
+            <Button sx={{marginTop:"20px"}} variant="contained" onClick={logar}>Logar</Button>
+          </div>
     </div>
+
   )
 }
