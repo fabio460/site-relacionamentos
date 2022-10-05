@@ -54,7 +54,9 @@
     height: 200px;
     border-radius: 100px;
 }
-
+.FormularioFinalizarBtn{
+    margin-top: 50px;
+}
 @media (max-width:450px) {
     .cadastroContainer{
         grid-template-columns: 1fr;
@@ -64,7 +66,7 @@
     }
     .cadastroBodyRight{
         width: 90%;
-        height: 80vh;
+        height: 95%;
         margin: auto;
     }
     .ProgressoHeader{

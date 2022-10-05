@@ -9,6 +9,8 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import ProgressoHeader from './ProgressoHeader';
 import Formulario from './Formulario';
+import Formularioendereco from './Formularioendereco';
+import FormularioFinal from './FormularioFinal';
 
 
 
@@ -49,14 +51,13 @@ export default function Progresso() {
     {
       label: <ProgressoHeader ativo={1}/>,
       description:
-        'An ad group contains one or more ads which target a shared set of keywords.',
+        <Formularioendereco
+          
+        />,
     },
     {
       label: <ProgressoHeader ativo={2}/>,
-      description: `Try out different ad text to see what brings in the most customers,
-                and learn how to enhance your ads using features like ad extensions.
-                If you run into any problems with your ads, find out how to tell if
-                they're running and how to resolve approval issues.`,
+      description:<FormularioFinal/>,
     },
   ];
   const theme = useTheme();
