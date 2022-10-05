@@ -194,7 +194,7 @@ export default function Progresso() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent:"center",
-                height: 100,
+                height: 50,
                 pl: 0,
                 bgcolor: 'transparent',
               }}
