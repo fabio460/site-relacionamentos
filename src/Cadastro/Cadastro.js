@@ -29,25 +29,7 @@ export default function Cadastro() {
     setImagemPerfil(URL.createObjectURL(e.target.files[0]))
   }
 
-  async function setarCep(params) {
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-      .then(r=>r.json())
-      .then(res=>{
-        setBairro(res.bairro)
-        setCidade(res.localidade)
-        setRua(res.logradouro)
-        setEstado(res.uf)
-        setComplemento(res.complemento)
-      })
-      .catch(res=>{
-        // setBairro('')
-        // setCidade('')
-        // setRua('')
-        // setEstado('')
-        // setComplemento('')
-      }) 
- }
- setarCep()
+
 
   
 

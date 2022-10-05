@@ -16,7 +16,7 @@ import FormularioFinal from './FormularioFinal';
 
 export default function Progresso() {
   const [telaCompleta, settelaCompleta] = React.useState(false)
-  
+  const [cepvalido, setcepvalido] = useState()
   const [emailValido, setemailValido] = useState(false)
   const [campoNulo, setcampoNulo] = useState(false)
   const [nome,setNome]=useState('')
@@ -27,6 +27,13 @@ export default function Progresso() {
   const [senhasNaoConferem, setsenhasNaoConferem] = useState(false)
   const [confirSenha, setconfirSenha] = useState('')
   const [confirmaSenha, setconfirmaSenha] = useState('')
+  const [Estado, setEstado] = useState('')
+  const [Cidade, setCidade] = useState('')
+  const [Bairro, setBairro] = useState('')
+  const [Cep, setCep] = useState('')
+  const [Logradouro, setLogradouro] = useState('')
+  const [Complemento, setComplemento] = useState('')
+  const [Rua, setRua] = useState('')
   const steps = [
     {
       label: <ProgressoHeader ativo={0}/>,
@@ -52,7 +59,22 @@ export default function Progresso() {
       label: <ProgressoHeader ativo={1}/>,
       description:
         <Formularioendereco
-          
+          Estado={Estado}
+          Cidade={Cidade}
+          Bairro={Bairro}
+          Logradouro={Logradouro}
+          Complemento={Complemento}
+          setEstado={setEstado}
+          setCidade={setCidade}
+          setBairro={setBairro}
+          setLogradouro={setLogradouro}
+          setComplemento={setComplemento}
+          Cep={Cep}
+          setCep={setCep}
+          Rua={Rua}
+          setRua={setRua}
+          setcepvalido={setcepvalido}
+          cepvalido={cepvalido}
         />,
     },
     {
@@ -83,7 +105,14 @@ export default function Progresso() {
             if (senha === confirmaSenha) {
               
               setsenhasNaoConferem(false)
-              setActiveStep((prevActiveStep) => prevActiveStep + 1);
+              if (activeStep === 0) {
+                setActiveStep((prevActiveStep) => prevActiveStep + 1);
+              } else {
+                if (cepvalido) {
+                  setActiveStep((prevActiveStep) => prevActiveStep + 1);
+                }
+              }
+              
             } else {
               setsenhaInvalida(false)
               setsenhasNaoConferem(true)
