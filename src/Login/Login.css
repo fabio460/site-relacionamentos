@@ -8,7 +8,8 @@
 .loginContainer{
     /* background-image: url('https://elearnkart.com/wp-content/uploads/2018/07/banner-lsat-course-overview.jpg'); */
     /* background-image: url('https://university.envisionus.com/getattachment/Online-Course-Information/OnlineCourseInformation_Banner.jpg'); */
-    background-image: url('https://www.techoriginator.com/wp-content/uploads/2020/03/service-banner8-1140x445.jpg');
+    /* background-image: url('https://www.techoriginator.com/wp-content/uploads/2020/03/service-banner8-1140x445.jpg'); */
+    background-image: url('https://sudaconsulting.com/img/V2Background.jpg');
     background-position: center;
     background-size: cover;
     height: 100vh;
@@ -22,7 +23,7 @@
    
    color: white;
    text-shadow: 1px 1px 1px black;
-   padding:100px 50px;
+   padding:50px;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
@@ -46,7 +47,7 @@
     height: 100vh;
     padding: 50px;
     color: white;
-    padding-top: 80px;
+    padding-top: 30px;
     
 }
 .labelEmail,.labelSenha{
@@ -60,14 +61,15 @@
    
     color: rgb(255, 159, 159);
 }
-@media (max-width:400px) {
+@media (max-width:450px) {
     .loginBodyLeft{
         display: none;
     }
     .loginBodyRight{
         width: 90%;
-        height: 80vh;
+        height: 95%;
         margin: auto;
+        padding: 15px;
     }
     .loginContainer{
         grid-template-columns: 1fr;

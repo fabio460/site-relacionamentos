@@ -56,7 +56,7 @@ export default function Formularioendereco({
     autoComplete="off"
     >
         <FormControl variant="standard" sx={{ marginTop:"20px",color:'white'}} size='small'>
-            <InputLabel  sx={{color:"white"}} htmlFor="component-helper" ><div style={{fontSize:"20px"}}>Cep</div></InputLabel>
+            <InputLabel  sx={{color:"white"}} htmlFor="component-helper" ><div style={{fontSize:"20px"}}>Cep*</div></InputLabel>
             <Input
             sx={{color:'white',textShadow:' 1px 1px 2px black'}}
             variant="standard"

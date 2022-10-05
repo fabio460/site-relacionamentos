@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Login.css'
-
+import HomeIcon from '@mui/icons-material/Home';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import PersonIcon from '@mui/icons-material/Person';
@@ -139,6 +139,13 @@ export default function Login() {
             
           </div>
           <div className='loginBodyRight' >
+            <div>
+              
+              <IconButton aria-label="delete" onClick={()=>navigate('/')}>
+                <HomeIcon color={'primary'} />
+              </IconButton>
+            
+            </div>
             <div className='loginBodyRightIcone'><PersonIcon sx={{width:'100px',height:'100px'}}/></div>
             <FormControl variant="standard" sx={{ marginTop:"20px",color:'white'}} size='small'>
             <InputLabel  sx={{color:"white"}} htmlFor="component-helper" ><div style={{fontSize:"20px"}}>Email</div></InputLabel>

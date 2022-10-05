@@ -24,9 +24,11 @@ export default function Formulario({
      confirSenha,
      setConfirmsenha,
      confirmaSenha,
-     setconfirmaSenha
+     setconfirmaSenha,
+     setImagemPerfil,
+     imagemPerfil
     }) {
-    const [imagemPerfil,setImagemPerfil]=useState('https://support.logmeinrescue.com/assets/images/care/topnav/default-user-avatar.jpg')
+    
     
   
     
@@ -87,6 +89,7 @@ export default function Formulario({
                     <Avatar sx={{width:"120px",height:"120px"}} src={imagemPerfil}></Avatar>
                   </IconButton>
               </div>
+              
               <FormControl variant="standard" sx={{ marginTop:"20px",color:'white'}} size='small'>
                     <InputLabel  sx={{color:"white"}} htmlFor="component-helper" ><div style={{fontSize:"20px"}}>Email *</div></InputLabel>
                     <Input
@@ -103,7 +106,7 @@ export default function Formulario({
                     {emailValido &&<div className='labelInvalido'>email inválido</div>}
                 </FormControl>
                 <FormControl variant="standard" sx={{ marginTop:"20px",color:'white'}} size='small'>
-                    <InputLabel  sx={{color:"white"}} htmlFor="component-helper" ><div style={{fontSize:"20px"}}>Nome *</div></InputLabel>
+                    <InputLabel  sx={{color:"white"}} htmlFor="component-helper" ><div style={{fontSize:"20px"}}>Nome*</div></InputLabel>
                     <Input
                     sx={{color:'white',textShadow:' 1px 1px 2px black'}}
                     variant="standard"
@@ -117,7 +120,7 @@ export default function Formulario({
                    {campoNulo &&<div className='labelInvalido'>campo não pode ser nulo</div>}
                 </FormControl>
                 <FormControl variant="standard" sx={{ marginTop:"20px",color:'white'}} size='small'>
-                    <InputLabel  sx={{color:"white"}} htmlFor="component-helper" ><div style={{fontSize:"20px"}}>Crie sua senha *</div></InputLabel>
+                    <InputLabel  sx={{color:"white"}} htmlFor="component-helper" ><div style={{fontSize:"20px"}}>Crie sua senha*</div></InputLabel>
                     <Input
                     sx={{color:'white',textShadow:' 1px 1px 2px black'}}
                     variant="standard"
@@ -134,7 +137,7 @@ export default function Formulario({
                     
                 </FormControl>
                 <FormControl variant="standard" sx={{ marginTop:"20px",color:'white'}} size='small'>
-                    <InputLabel  sx={{color:"white"}} htmlFor="component-helper" ><div style={{fontSize:"20px"}}>Confirmar senha *</div></InputLabel>
+                    <InputLabel  sx={{color:"white"}} htmlFor="component-helper" ><div style={{fontSize:"20px"}}>Confirmar senha*</div></InputLabel>
                     <Input
                     sx={{color:'white',textShadow:' 1px 1px 2px black'}}
                     variant="standard"

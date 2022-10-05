@@ -11,11 +11,17 @@ import ProgressoHeader from './ProgressoHeader';
 import Formulario from './Formulario';
 import Formularioendereco from './Formularioendereco';
 import FormularioFinal from './FormularioFinal';
-
+import HomeIcon from '@mui/icons-material/Home';
+import LoginIcon from '@mui/icons-material/Login';
+import { IconButton } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Progresso() {
-  const [telaCompleta, settelaCompleta] = React.useState(false)
+  const [profissao, setprofissao] = useState('')
+  const [outrasHabilidades, setoutrasHabilidades] = useState('')
+  const [observacoesFinais, setobservacoesFinais] = useState('')
+  const [validaProfissao, setvalidaProfissao] = useState(false)
   const [cepvalido, setcepvalido] = useState()
   const [emailValido, setemailValido] = useState(false)
   const [campoNulo, setcampoNulo] = useState(false)
@@ -34,6 +40,8 @@ export default function Progresso() {
   const [Logradouro, setLogradouro] = useState('')
   const [Complemento, setComplemento] = useState('')
   const [Rua, setRua] = useState('')
+  const [imagemPerfil,setImagemPerfil]=useState('https://support.logmeinrescue.com/assets/images/care/topnav/default-user-avatar.jpg')
+  
   const steps = [
     {
       label: <ProgressoHeader ativo={0}/>,
@@ -53,6 +61,8 @@ export default function Progresso() {
         setconfirSenha={setconfirSenha}
         setconfirmaSenha={setconfirmaSenha}
         confirmaSenha={confirmaSenha}
+        imagemPerfil={imagemPerfil}
+        setImagemPerfil={setImagemPerfil}
       />,
     },
     {
@@ -79,7 +89,31 @@ export default function Progresso() {
     },
     {
       label: <ProgressoHeader ativo={2}/>,
-      description:<FormularioFinal/>,
+      description:<FormularioFinal
+        setprofissao={setprofissao}
+        setoutrasHabilidades={setoutrasHabilidades}
+        setobservacoesFinais={setobservacoesFinais}
+        outrasHabilidades={outrasHabilidades}
+        profissao={profissao}
+        observacoesFinais={observacoesFinais}
+        setvalidaProfissao={setvalidaProfissao}
+        validaProfissao={validaProfissao}
+
+        nome={nome}
+        email={email}
+        imagemPerfil={imagemPerfil}
+        senha={senha}
+
+        Estado={Estado}
+        Cidade={Cidade}
+        Bairro={Bairro}
+        Logradouro={Logradouro}
+        Complemento={Complemento} 
+        Cep={Cep}
+        Rua={Rua}
+
+
+      />,
     },
   ];
   const theme = useTheme();
@@ -95,7 +129,7 @@ export default function Progresso() {
 
     if (emailValido === 0) {
       setemailValido(false)
-      if (nomeValido === 0) {
+      if (nome !== '') {
         setcampoNulo(false)
         if (senha !== '') {
           setsenhaNula(false)
@@ -134,73 +168,79 @@ export default function Progresso() {
       setemailValido(true)
       setsenhasNaoConferem(false)
     }
-
-
-   
-
-    
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const navigate = useNavigate()
   return (
-    <Box sx={{ width: '100%', flexGrow: 1 }}>
-      <Paper
-        square
-        elevation={0}
-        sx={{
-          
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent:"center",
-          height: 50,
-          pl: 0,
-          bgcolor: 'transparent',
-        }}
-      >
-        
-        <Typography >
-          <div style={{background:'',minWidth:""}}>
-             {steps[activeStep].label}
+      <div >
+          <div style={{display:"flex"}}>
+            <IconButton aria-label="delete" onClick={()=>navigate('/')}>
+               <HomeIcon color={'primary'} />
+            </IconButton>
+            <IconButton aria-label="delete" onClick={()=>navigate('/login')}>
+               <LoginIcon color={'primary'}/>
+            </IconButton>
           </div>
-        </Typography>
-      </Paper>
-      <Box sx={{ height: '80%' }}>
-        {steps[activeStep].description}
-      </Box>
-      <MobileStepper
-        variant="text"
-        steps={maxSteps}
-        position="static"
-        activeStep={activeStep}
-        sx={{bgcolor: 'transparent'}}
-        nextButton={
-          <Button
-            size="small"
-            onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
-          >
-            <div >próximo</div>
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowLeft />
-            ) : (
-              <KeyboardArrowRight />
-            )}
-          </Button>
-        }
-        backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-            {theme.direction === 'rtl' ? (
-              <KeyboardArrowRight/>
-            ) : (
-              <KeyboardArrowLeft/>
-            )}
-            <div >voltar</div>
-          </Button>
-        }
-      />
-    </Box>
+          <Box sx={{ width: '100%', flexGrow: 1,marginTop:"40px" }}>
+            <Paper
+              square
+              elevation={0}
+              sx={{
+                
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent:"center",
+                height: 100,
+                pl: 0,
+                bgcolor: 'transparent',
+              }}
+            >
+              
+              <Typography >
+                <div style={{background:'',minWidth:""}}>
+                  {steps[activeStep].label}
+                </div>
+              </Typography>
+            </Paper>
+            <Box sx={{ height: '100%' }}>
+              {steps[activeStep].description}
+            </Box>
+            <MobileStepper
+              variant="text"
+              steps={maxSteps}
+              position="static"
+              activeStep={activeStep}
+              sx={{bgcolor: 'transparent'}}
+              nextButton={
+                <Button
+                  size="small"
+                  onClick={handleNext}
+                  disabled={activeStep === maxSteps - 1}
+                >
+                  <div >próximo</div>
+                  {theme.direction === 'rtl' ? (
+                    <KeyboardArrowLeft />
+                  ) : (
+                    <KeyboardArrowRight />
+                  )}
+                </Button>
+              }
+              backButton={
+                <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                  {theme.direction === 'rtl' ? (
+                    <KeyboardArrowRight/>
+                  ) : (
+                    <KeyboardArrowLeft/>
+                  )}
+                  <div >voltar</div>
+                </Button>
+              }
+            />
+          </Box>        
+      </div>
   );
 }
