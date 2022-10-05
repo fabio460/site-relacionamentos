@@ -1,8 +1,73 @@
 .cadastroContainer{
-    padding: 2%;
+    color: white;
+    background-image: url('https://elearnkart.com/wp-content/uploads/2018/07/banner-lsat-course-overview.jpg');
+    /* background-image: url('https://sudaconsulting.com/img/V2Background.jpg'); */
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 4fr 3fr;
 }
+.cadastroBodyRight{
+    display:flex;
+    flex-direction: column;
+    background-color: rgba(163, 163, 163, 0.3);
+    backdrop-filter: blur(10px);
+    height: 100vh;
+    padding: 20px;
+    color: white;
+    padding-top: 80px;
+    
+}
+.labelInvalido{
+    color: red;
+}
+/* .MuiStepper-root {
+    background-color:blue;
+    width: 550px;
+    padding: 0px;
+    margin: 0;
+} */
+.ProgressoHeader{
+    color: white;
+    margin: 0px 60px;
+}
+.MuiStepper-elevatio{
+   padding: 0px 0px 0px 0px;
+   background-color: yellow;
+}
+.cadastroAvatar{
+    display: flex;
+    justify-content: center;
+}
+.cadastroBodyLeft{
+   
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    padding:100px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+ }
 .img-thumbnail{
     max-width: 200px;
     height: 200px;
     border-radius: 100px;
+}
+
+@media (max-width:450px) {
+    .cadastroContainer{
+        grid-template-columns: 1fr;
+    }
+    .cadastroBodyLeft{
+        display: none;
+    }
+    .cadastroBodyRight{
+        width: 90%;
+        height: 80vh;
+        margin: auto;
+    }
+    .ProgressoHeader{
+        margin: 0px 9px;
+    }
 }

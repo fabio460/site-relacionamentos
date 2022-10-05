@@ -1,21 +1,27 @@
 
 .loginBodyContainer{
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    background-color: white;
+    
     width: 300px;
     height: 100vh;
 }
 .loginContainer{
-    background-image: url('https://www.rsdesign.com.br/wp-content/uploads/2014/06/mesa-escritorio.jpg');
+    /* background-image: url('https://elearnkart.com/wp-content/uploads/2018/07/banner-lsat-course-overview.jpg'); */
+    /* background-image: url('https://university.envisionus.com/getattachment/Online-Course-Information/OnlineCourseInformation_Banner.jpg'); */
+    background-image: url('https://www.techoriginator.com/wp-content/uploads/2020/03/service-banner8-1140x445.jpg');
     background-position: center;
     background-size: cover;
     height: 100vh;
     display: grid;
     grid-template-columns: 4fr 3fr;
+    
+    
 }
 
 .loginBodyLeft{
-   color: rgb(214, 214, 214);
+   
+   color: white;
+   text-shadow: 1px 1px 1px black;
    padding:100px 50px;
    display: flex;
    flex-direction: column;
@@ -27,20 +33,43 @@
     width: 150px;
     margin-top: 10px;
 }
-.loginBodyLeft h1{
-    text-shadow: black 2px 2px 4px;
+
+.loginBodyRightIcone{
+    display: flex;
+    justify-content: center;
 }
 .loginBodyRight{
     display:flex;
     flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(226, 226, 226, 0.3);
     backdrop-filter: blur(10px);
     height: 100vh;
     padding: 50px;
     color: white;
+    padding-top: 80px;
+    
 }
 .labelEmail,.labelSenha{
    color:rgb(232, 17, 17);
    margin-left: 10px;
 }
-
+.loginLinkCadastro{
+    cursor: pointer;
+}
+.loginLinkCadastro:hover{
+   
+    color: rgb(255, 159, 159);
+}
+@media (max-width:400px) {
+    .loginBodyLeft{
+        display: none;
+    }
+    .loginBodyRight{
+        width: 90%;
+        height: 80vh;
+        margin: auto;
+    }
+    .loginContainer{
+        grid-template-columns: 1fr;
+    }
+}

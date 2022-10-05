@@ -61,7 +61,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  const [usuarioLogado,setUsuarioLogado] = React.useState()
+  var user = localStorage.getItem('usuarioLogado')
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -81,7 +82,7 @@ export default function Header() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-
+  
   const navigate = useNavigate()
   const cadastrar = ()=>{
      navigate('/cadastro')
@@ -89,6 +90,12 @@ export default function Header() {
 
   const logar = ()=>{
     navigate('/login')
+  }
+
+  const deslogar = ()=>{
+    localStorage.setItem('usuarioLogado',null)
+    handleMenuClose()
+    handleMobileMenuClose();
   }
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -107,10 +114,15 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={logar}>Logar</MenuItem>
+      {user !== 'null'      
+      ? <MenuItem onClick={deslogar}>Deslogar</MenuItem>
+      : <MenuItem onClick={logar}>Logar</MenuItem>
+      }
       <MenuItem onClick={cadastrar}>Cadastrar</MenuItem>
     </Menu>
   );
+
+
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
@@ -164,8 +176,10 @@ export default function Header() {
     </Menu>
   );
 
-  var user = localStorage.getItem('user')
-  const [usuarioLogado,setUsuarioLogado] = React.useState()
+
+ 
+  
+
   React.useEffect(()=>{
     let userObjeto = JSON.parse(user)
     setUsuarioLogado(userObjeto)
@@ -189,7 +203,7 @@ export default function Header() {
               sx={{ mr: 2 }}
             >
               <Avatar 
-                sx={{color:'#0288d1',background:'white',border:'#0288d1 solid 1px'}} 
+                sx={{bgcolor:"#0288d1"}}
                 src={usuarioLogado && usuarioLogado.avatar}   
               >
                  {usuarioLogado &&  iniciais(usuarioLogado.userName)}
@@ -200,9 +214,15 @@ export default function Header() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', sm: 'block',color:'#0288d1' } }}
+            sx={{ display: { xs: 'none', sm: 'block',color:'' } }}
           >
-            Busca Pessoas
+            <h5 style={{display:"flex",alignItems:"center" }}>            
+              <Avatar 
+                 sx={{marginRight:"10px"}}
+                 src={'https://i.pinimg.com/236x/37/a5/2c/37a52cb19aabbff43eb7346dc71a68ab.jpg'}>
+              </Avatar>
+              <span>Bicos FS </span>  
+            </h5>
           </Typography>
           <Search sx={{border:"#0288d1 solid 1px",color:""}}>
             <SearchIconWrapper>
@@ -240,7 +260,7 @@ export default function Header() {
             >
               {/* <Avatar sx={{color:'white',background:"#0288d1"}} b>f</Avatar> */}
               <Avatar 
-                 sx={{color:'#0288d1',background:'white',border:'#0288d1 solid 1px'}}
+                 sx={{background:'#0288d1'}}
                  src={usuarioLogado && usuarioLogado.avatar}   
               >
                  {usuarioLogado && iniciais(usuarioLogado.userName)}

@@ -3,14 +3,21 @@ import './Login.css'
 
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import PersonIcon from '@mui/icons-material/Person';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Avatar } from '@mui/material';
+import { Avatar, Input } from '@mui/material';
+import { Box, createTheme } from '@mui/system';
+import { grey } from '@mui/material/colors';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import AlternateEmail from '@mui/icons-material/AlternateEmail';
+import {useNavigate} from 'react-router-dom'
 export default function Login() {
 
   const [values, setValues] = React.useState({showPassword: false});
@@ -19,6 +26,7 @@ export default function Login() {
   const [LabelEmail, setLabelEmail] = useState('email')
   const [LabelSenha, setLabelSenha] = useState('senha')
   const [email, setemail] = useState('')
+  const navigate = useNavigate()
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
@@ -38,15 +46,18 @@ export default function Login() {
   const usuarios = [
     {
       email:"fabio@gmail.com",
-      senha:"fabio"
+      senha:"fabio",
+      userName:"Fabio da Sila"
     },
     {
       email:"ruth@gmail.com",
-      senha:"ruth"
+      senha:"ruth",
+      userName:"Ruth gome"
     },
     {
       email:"ana@gmail.com",
-      senha:"ana"
+      senha:"ana",
+      userName:"Anailza Gomes"
     },
   ]
 
@@ -68,7 +79,7 @@ export default function Login() {
       })
       
       var existeSenha = usuarios.find(e=>{
-        if (e.senha === values.password) {
+        if (e.senha === values.password && e.email === email) {
           return true
         }else{
           return false
@@ -85,7 +96,7 @@ export default function Login() {
 
       if (!existeSenha) {
         setErroDeSenha(true)
-        setLabelSenha('senha invalida')
+        setLabelSenha('senha inválida')
       } else {
         setErroDeSenha(false)
         setLabelSenha('senha')
@@ -93,9 +104,12 @@ export default function Login() {
 
 
       if(usuario){
-        alert("usuario(a) "+usuario.email+" conectado com sucesso")
+        localStorage.setItem('usuarioLogado',JSON.stringify(usuario))
+        
+        navigate('/')
       }
   }
+
 
   return (
     <div className='loginContainer'>
@@ -109,56 +123,69 @@ export default function Login() {
               <span>Bicos FS </span>  
             </h2>
             <div>
-                <h1>Você possui uma conta?</h1> 
-                <div>
-                  Registre-se para acessar funcionalidades,
-                  encontrar profissionais e conseguir trabalhos freelancer  
-                </div>
+                <h1>Login</h1> 
+                <h4>
+                  Faça seu login e interaja com profissionais da sua região 
+                </h4>
+                <h4>
+                  Com o login voçê terá mais acesso ao site e suas funcionalidades
+                </h4>
                 <div className='loginLeftIcones'>
-                  <Avatar sx={{width:"30px",height:"30px"}}>GH</Avatar>
-                  <Avatar sx={{width:"30px",height:"30px"}}>F</Avatar>
-                  <Avatar sx={{width:"30px",height:"30px"}}>T</Avatar>
+                  <Box sx={{width:"30px",height:"30px"}}><GitHubIcon/></Box>
+                  <Box sx={{width:"30px",height:"30px"}}><LinkedInIcon/></Box>
+                  <Box sx={{width:"30px",height:"30px"}}><AlternateEmail/></Box>
                 </div>
             </div>  
             
           </div>
-          <div className='loginBodyRight'>
-            <h1 >Login</h1>
-            <TextField
-              error={ErroDeEmail}
-              label={'email'}
-              size='small'
-              onChange={e=>setemail(e.target.value)}
-            />
+          <div className='loginBodyRight' >
+            <div className='loginBodyRightIcone'><PersonIcon sx={{width:'100px',height:'100px'}}/></div>
+            <FormControl variant="standard" sx={{ marginTop:"20px",color:'white'}} size='small'>
+            <InputLabel  sx={{color:"white"}} htmlFor="component-helper" ><div style={{fontSize:"20px"}}>Email</div></InputLabel>
+                <Input
+                  sx={{color:'white',textShadow:' 1px 1px 2px black'}}
+                  variant="standard"  
+                  error={ErroDeEmail}
+                  value={email}
+                  size='small'
+                  onChange={e=>setemail(e.target.value)}
+                  aria-describedby="component-helper-text"
+                />
+            </FormControl>
             {ErroDeEmail &&
               <div className='labelEmail'>{LabelEmail}</div>
             }
-            <FormControl sx={{ marginTop:"20px"}} variant="outlined" size='small'>
-              <InputLabel htmlFor="outlined-adornment-password">senha</InputLabel>
-              <OutlinedInput
-                error={ErroDeSenha}
-                id="outlined-adornment-password"
-                type={values.showPassword ? 'text' : 'password'}
-                value={values.password}
-                onChange={handleChange('password')}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                label='password'
-              />
-            </FormControl>
+
+              <FormControl variant="standard" sx={{ marginTop:"20px"}} size='small'>
+                <InputLabel  sx={{color:"white",fontSize:"20px"}} htmlFor="standard-adornment-password">Senha</InputLabel>
+                <Input
+                  error={ErroDeSenha}
+                  sx={{color:'white'}}
+                  id="standard-adornment-password"
+                  type={values.showPassword ? 'text' : 'password'}
+                  value={values.password}
+                  onChange={handleChange('password')}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        sx={{color:'white'}}
+                      >
+                        {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+                
+             </FormControl>
             {ErroDeSenha &&
               <div className='labelSenha'>{LabelSenha}</div>
             }
+            <div style={{marginTop:"5px"}}>
+              Não é cadastrado? <span className='loginLinkCadastro' onClick={()=>navigate('/cadastro')}>cadastre-se aqui</span>
+            </div>
             <Button sx={{marginTop:"20px"}} variant="contained" onClick={logar}>Logar</Button>
           </div>
     </div>
