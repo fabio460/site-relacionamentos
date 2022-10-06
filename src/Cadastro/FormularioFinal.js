@@ -33,8 +33,8 @@ export default function FormularioFinal({
 
   }
 
-  const link = 'http://localhost:4000/'
-  const link2 = "https://api-site-relacionamentos.vercel.app/"
+  const link2 = 'http://localhost:4000/'
+  const link = "https://api-site-relacionamentos.vercel.app/"
 
 
 
