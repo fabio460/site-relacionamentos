@@ -73,4 +73,16 @@
     .ProgressoHeader{
         margin: 0px 5px;
     }
+    .cadastroContainer{
+   
+        height: 100%;
+       
+    }
+    .cadastroBodyRight{
+  
+        min-height: 100vh;
+        padding: 10px;
+        
+        
+    }
 }

@@ -20,8 +20,10 @@ export default function FormularioFinal({
   Logradouro,
   Complemento,
   Cep,
-  Rua
-
+  Rua,
+  telefone,
+  setTelefone,
+  ImagemAvatar
 }) {
   
 
@@ -31,13 +33,19 @@ export default function FormularioFinal({
 
   }
 
+  const link = 'http://localhost:4000/'
+  const link2 = "https://api-site-relacionamentos.vercel.app/"
+
+
+
   const cadastrar = ()=>{
+    console.log(imagemPerfil+" - "+ImagemAvatar)
       if (profissao !== '') {
         setvalidaProfissao(false)
         const formdata = new FormData()
 
         // o campo imagem pode vir em branco
-        if (imagemPerfil === 'https://support.logmeinrescue.com/assets/images/care/topnav/default-user-avatar.jpg') {
+        if (ImagemAvatar === 'https://support.logmeinrescue.com/assets/images/care/topnav/default-user-avatar.jpg') {
           formdata.append('imagemPerfil','')
         }else{
           formdata.append('imagemPerfil',imagemPerfil)
@@ -57,9 +65,16 @@ export default function FormularioFinal({
         formdata.append('complemento',Complemento)
        
         formdata.append('profissao',profissao)
+        formdata.append('telefone',telefone)
         formdata.append('observacoesFinais',observacoesFinais)
         formdata.append('outrasHabilidades',outrasHabilidades)
         //post dos dados
+        
+        fetch(link+"setUsuario",{
+          method:"post",
+          body:formdata
+        })
+
         
         alert('Profissional '+nome+' cadastrado com sucesso')
       }else{
@@ -88,6 +103,21 @@ export default function FormularioFinal({
                 value={profissao}
                 size='small'
                 onChange={e=>setprofissao(e.target.value)}
+                aria-describedby="component-helper-text"
+                
+                />
+                {validaProfissao && <div className='labelInvalido'>profissão inválida</div>}
+              
+            </FormControl>
+
+            <FormControl variant="standard" sx={{ marginTop:"20px",color:'white'}} size='small'>
+                <InputLabel  sx={{color:"white"}} htmlFor="component-helper" ><div style={{fontSize:"20px"}}>Telefone*</div></InputLabel>
+                <Input
+                sx={{color:'white',textShadow:' 1px 1px 2px black'}}
+                variant="standard"
+                value={telefone}
+                size='small'
+                onChange={e=>setTelefone(e.target.value)}
                 aria-describedby="component-helper-text"
                 
                 />

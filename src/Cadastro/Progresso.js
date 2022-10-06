@@ -40,8 +40,9 @@ export default function Progresso() {
   const [Logradouro, setLogradouro] = useState('')
   const [Complemento, setComplemento] = useState('')
   const [Rua, setRua] = useState('')
-  const [imagemPerfil,setImagemPerfil]=useState('https://support.logmeinrescue.com/assets/images/care/topnav/default-user-avatar.jpg')
-  
+  const [telefone, setTelefone] = useState('')
+  const [imagemPerfil,setImagemPerfil]=useState()
+  const [ImagemAvatar, setImagemAvatar] = useState('https://support.logmeinrescue.com/assets/images/care/topnav/default-user-avatar.jpg')
   const steps = [
     {
       label: <ProgressoHeader ativo={0}/>,
@@ -63,6 +64,8 @@ export default function Progresso() {
         confirmaSenha={confirmaSenha}
         imagemPerfil={imagemPerfil}
         setImagemPerfil={setImagemPerfil}
+        setImagemAvatar={setImagemAvatar}
+        ImagemAvatar={ImagemAvatar}
       />,
     },
     {
@@ -98,9 +101,12 @@ export default function Progresso() {
         observacoesFinais={observacoesFinais}
         setvalidaProfissao={setvalidaProfissao}
         validaProfissao={validaProfissao}
+        telefone={telefone}
+        setTelefone={setTelefone}
 
         nome={nome}
         email={email}
+        ImagemAvatar={ImagemAvatar}
         imagemPerfil={imagemPerfil}
         senha={senha}
 

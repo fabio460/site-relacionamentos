@@ -6,7 +6,9 @@ export default function HomeLeft({handleLayout,a11yProps}) {
   const [list,setList]=useState([])  
   const [visible,setVisible]=useState(true)
   async function getUsuarios() {
-    const l =await fetch('https://postagem-back.vercel.app/getUsuarios')
+    const link = 'localhost:4000/getUsuarios'
+    const link2 = 'https://api-site-relacionamentos.vercel.app/getUsuarios'
+    const l =await fetch(link2)
       .then(res=>res.json())
       setList(l.reverse())
       setVisible(false)
@@ -26,6 +28,7 @@ export default function HomeLeft({handleLayout,a11yProps}) {
         {list.map((item,key)=>{
             return <List key={key} sx={{ bgcolor: 'background.paper' }}>
                 <ElementoDaLista item={item} key={key} handleLayout={handleLayout} />
+                {/* {item.nome} */}
             </List>
         })}
     </div>

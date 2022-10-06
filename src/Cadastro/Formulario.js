@@ -26,7 +26,9 @@ export default function Formulario({
      confirmaSenha,
      setconfirmaSenha,
      setImagemPerfil,
-     imagemPerfil
+     imagemPerfil,
+     setImagemAvatar,
+     ImagemAvatar
     }) {
     
     
@@ -47,8 +49,11 @@ export default function Formulario({
     
     const [values, setValues] = React.useState({showPassword: false});
     const [ErroDeSenha, setErroDeSenha] = useState(false)
+
+
     const onSelectFile=(e)=>{
-      setImagemPerfil(URL.createObjectURL(e.target.files[0]))
+      setImagemPerfil(e.target.files[0])
+      setImagemAvatar(URL.createObjectURL(e.target.files[0]))
     }
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
@@ -86,7 +91,7 @@ export default function Formulario({
               <div className='cadastroAvatar' type='file'>     
                   <IconButton color="primary" aria-label="upload picture" component="label">
                     <input hidden accept="image/*" type="file" onChange={onSelectFile}/>
-                    <Avatar sx={{width:"120px",height:"120px"}} src={imagemPerfil}></Avatar>
+                    <Avatar sx={{width:"120px",height:"120px"}} src={ImagemAvatar}></Avatar>
                   </IconButton>
               </div>
               
