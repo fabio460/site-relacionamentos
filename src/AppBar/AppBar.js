@@ -61,8 +61,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [usuarioLogado,setUsuarioLogado] = React.useState()
+ 
   var user = localStorage.getItem('usuarioLogado')
+  let usuarioLogado = JSON.parse(user)
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -180,15 +181,17 @@ export default function Header() {
  
   
 
-  React.useEffect(()=>{
-    let userObjeto = JSON.parse(user)
-    setUsuarioLogado(userObjeto)
-  },[user])
+  // React.useEffect(()=>{
+  //   let userObjeto = JSON.parse(user)
+  //   setUsuarioLogado(userObjeto)
+  //   console.log(userObjeto)
+  // },[user])
 
   function iniciais(texto) {
     let t = texto.split('')
-    return t[0].toUpperCase()
+    return t[0]
   }
+  console.log(usuarioLogado)
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="inherit" enableColorOnDark>
@@ -204,9 +207,9 @@ export default function Header() {
             >
               <Avatar 
                 sx={{bgcolor:"#0288d1"}}
-                src={usuarioLogado && usuarioLogado.avatar}   
+                src={usuarioLogado && usuarioLogado.imagemPerfil}   
               >
-                 {usuarioLogado &&  iniciais(usuarioLogado.userName)}
+                 {usuarioLogado &&  iniciais(usuarioLogado.nome)}
               </Avatar>
             </IconButton>              
           </div>
@@ -261,9 +264,9 @@ export default function Header() {
               {/* <Avatar sx={{color:'white',background:"#0288d1"}} b>f</Avatar> */}
               <Avatar 
                  sx={{background:'#0288d1'}}
-                 src={usuarioLogado && usuarioLogado.avatar}   
+                 src={usuarioLogado && usuarioLogado.imagemPerfil}   
               >
-                 {usuarioLogado && iniciais(usuarioLogado.userName)}
+                 {usuarioLogado && iniciais(usuarioLogado.nome)}
               </Avatar>
             </IconButton>
           </Box>

@@ -26,6 +26,7 @@ export default function Login() {
   const [LabelEmail, setLabelEmail] = useState('email')
   const [LabelSenha, setLabelSenha] = useState('senha')
   const [email, setemail] = useState('')
+  const [usuarioLogado, setUsuarioLogado] = useState(false)
   const navigate = useNavigate()
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -42,6 +43,26 @@ export default function Login() {
     event.preventDefault();
   };
 
+
+
+ async function jwt(){
+    try {
+      const formdata = new FormData()
+      formdata.append('email',email)
+      formdata.append('senha',values.password)
+      let user =await fetch('http://localhost:4000/jwt',{
+        method:'POST',
+        body:formdata
+      }).then(res=>res.json())
+      localStorage.setItem('usuarioLogado',JSON.stringify(user.usuario))
+      navigate('/')
+      
+    } catch (error) {
+      setLabelSenha('senha inválida')
+      setErroDeSenha(true)
+    }
+   
+  }
 
   const usuarios = [
     {
@@ -62,52 +83,49 @@ export default function Login() {
   ]
 
   const logar = ()=>{
-      var usuario = usuarios.find(use=>{
-        if (use.email === email && use.senha === values.password) {
-          return use
-        }else{
-          return false
-        }
-      })
+      jwt()
+      // var usuario = usuarios.find(use=>{
+      //   if (use.email === email && use.senha === values.password) {
+      //     return use
+      //   }else{
+      //     return false
+      //   }
+      // })
 
-      var existeEmail = usuarios.find(e=>{
-        if (e.email === email) {
-          return true
-        }else{
-          return false
-        } 
-      })
+      // var existeEmail = usuarios.find(e=>{
+      //   if (e.email === email) {
+      //     return true
+      //   }else{
+      //     return false
+      //   } 
+      // })
       
-      var existeSenha = usuarios.find(e=>{
-        if (e.senha === values.password && e.email === email) {
-          return true
-        }else{
-          return false
-        } 
-      })
+      // var existeSenha = usuarios.find(e=>{
+      //   if (e.senha === values.password && e.email === email) {
+      //     return true
+      //   }else{
+      //     return false
+      //   } 
+      // })
 
-      if(!existeEmail){
-        setErroDeEmail(true)
-        setLabelEmail('usuario inexistente')
-      }else{
-        setErroDeEmail(false)
-        setLabelEmail('email')
-      }
+      // if(!existeEmail){
+      //   setErroDeEmail(true)
+      //   setLabelEmail('usuario inexistente')
+      // }else{
+      //   setErroDeEmail(false)
+      //   setLabelEmail('email')
+      // }
 
-      if (!existeSenha) {
-        setErroDeSenha(true)
-        setLabelSenha('senha inválida')
-      } else {
-        setErroDeSenha(false)
-        setLabelSenha('senha')
-      }
+      // if (!existeSenha) {
+      //   setErroDeSenha(true)
+      //   setLabelSenha('senha inválida')
+      // } else {
+      //   setErroDeSenha(false)
+      //   setLabelSenha('senha')
+      // }
 
 
-      if(usuario){
-        localStorage.setItem('usuarioLogado',JSON.stringify(usuario))
-        
-        navigate('/')
-      }
+   
   }
 
 
