@@ -1,0 +1,12 @@
+.ElementoDaListaMobile{
+    display: none;
+}
+
+@media (max-width:400px) {
+    .ElementoDaLista{
+        display: none;
+    }
+    .ElementoDaListaMobile{
+        display: block;
+    }
+}
