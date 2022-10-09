@@ -21,6 +21,11 @@
     justify-content: center;
 }
 @media (max-width:400px) {
+    .SwipeableViews{
+        height: 50vh;
+        width: 100%;
+        overflow-y: scroll;
+    }
     .ElementoDaLista{
         display: none;
     }
