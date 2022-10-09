@@ -101,11 +101,11 @@ export default function HomeLeft({handleLayout}) {
   ];
 
   const boxStyle ={
-    bgcolor: 'background.paper',
+    bgcolor: '',
     width: "100%",
     position: 'relative',
     minHeight: 200,
-    padding:'0px 0px 0px 0px',
+    padding:'0px',
     "@media (max-width:400px)":{
       padding:'0px'
     }
@@ -124,27 +124,28 @@ export default function HomeLeft({handleLayout}) {
     <Box
       sx={boxStyle}
     >
-      <AppBar position="static" color="default">
+      <Box position="static" color="default">
         <Tabs
           value={value}
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
           variant="fullWidth"
-          aria-label="action tabs example"
+          aria-label=""
+          sx={{padding:"5px"}}
         >
           <Tab label="Lista" {...a11yProps(0)} />
           <Tab label="Perfil" {...a11yProps(1)} />
           <Tab label="outros" {...a11yProps(2)} />
         </Tabs>
-      </AppBar>
+      </Box>
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-           <div className='SwipeableViews'><ListaDeProfissionais /></div>
+           <div className='SwipeableViews SwipeableViewsList'><ListaDeProfissionais /></div>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <div className='SwipeableViews'> <Perfil/></div>

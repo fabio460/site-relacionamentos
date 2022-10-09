@@ -2,8 +2,12 @@
     display: none;
 }
 .SwipeableViews{
-    height: 80vh;
+    height: 83.5vh;
     width: 100%;
+    background-color: #e3f2fd;
+    padding-top: 10px;
+}
+.SwipeableViewsList{
     overflow-y: scroll;
 }
 .SwipeableViews::-webkit-scrollbar{
@@ -13,12 +17,21 @@
    background-color: rgb(220, 230, 255);
 }
 
-.perfil{
-    padding: 15px;
+.PerfilBlocos{
+   padding: 10px;
+   width: 95%; 
+   background-color: white;
+   margin: auto;
+   border-radius: 10px;
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 10px;
 }
-.PerfilAvatar, .perfilNome {
-    display: flex;
-    justify-content: center;
+.perfilBlocosTop {
+   align-items: center;
+}
+.PerfilBlocosTopicos{
+    
 }
 @media (max-width:400px) {
     .SwipeableViews{
