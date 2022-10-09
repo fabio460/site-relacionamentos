@@ -30,25 +30,23 @@ export default function Perfil() {
                 <Button variant="contained" sx={{borderRadius:"30px"}}>Editar dados</Button>
                 <Button variant="outlined" sx={{borderRadius:"30px"}}>remover conta</Button>
               </Stack>
+          </div>
 
+          <div className='PerfilBlocos'>
+              <Typography sx={{display:'flex',alignItems:'center'}}>
+                <Avatar sx={{marginRight:'15px'}}><CallIcon/></Avatar>
+                <div>{usuarioLogado.telefone}</div>
+              </Typography>
+              <Typography sx={{display:'flex',alignItems:'center',margin:'5px 0px'}}>
+                <Avatar sx={{marginRight:'15px'}}><CallIcon/></Avatar>
+                <div>{usuarioLogado.email}</div>
+              </Typography>
           </div>
           <div className='PerfilBlocos'>
-          
-            <Typography sx={{display:'flex',alignItems:'center'}}>
-               <Avatar sx={{marginRight:'15px'}}><CallIcon/></Avatar>
-               <div>{usuarioLogado.telefone}</div>
-            </Typography>
-
-            <Typography sx={{display:'flex',alignItems:'center',margin:'5px 0px'}}>
-               <Avatar sx={{marginRight:'15px'}}><CallIcon/></Avatar>
-               <div>{usuarioLogado.cidade}</div>
-            </Typography>
-
             <Typography sx={{display:'flex',alignItems:'center'}}>
                <Avatar sx={{marginRight:'15px'}}><CallIcon/></Avatar>
                <div>{usuarioLogado.rua}</div>
             </Typography>
-
             <Typography sx={{display:'flex',alignItems:'center',margin:'5px 0px'}}>
                <Avatar sx={{marginRight:'15px'}}><CallIcon/></Avatar>
                <div>{usuarioLogado.logradouro}</div>
@@ -60,9 +58,8 @@ export default function Perfil() {
 
             <Typography sx={{display:'flex',alignItems:'center',margin:'5px 0px'}}>
                <Avatar sx={{marginRight:'15px'}}><CallIcon/></Avatar>
-               ,<div>{usuarioLogado.cidade}</div>
+               <div>{usuarioLogado.cidade}</div>
             </Typography>
-            
           </div>
         </div>:
         <div>
