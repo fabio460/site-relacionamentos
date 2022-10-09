@@ -14,7 +14,8 @@ import UpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { green } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Perfil from './Perfil';
-import ListaDeProfissionais from '../ListaDeProfissionais';
+import ListaDeProfissionais from '../HomeLeftContainer/ListaDeProfissionais';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 //import ListaDeProfissionais from './ListaDeProfissionais';
 
 function TabPanel(props) {
@@ -29,7 +30,7 @@ function TabPanel(props) {
       aria-labelledby={`action-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && <Box sx={{ padding:"0px" }}>{children}</Box>}
     </Typography>
   );
 }
@@ -49,8 +50,8 @@ function a11yProps(index) {
 
 const fabStyle = {
   position: 'absolute',
-  bottom: 16,
-  right: 16,
+  bottom: 1,
+  right: 1,
 };
 
 const fabGreenStyle = {
@@ -82,7 +83,7 @@ export default function HomeLeft({handleLayout}) {
     {
       color: 'primary',
       sx: fabStyle,
-      icon: <AddIcon />,
+      icon: <ArrowUpwardIcon />,
       label: 'Add',
     },
     {
@@ -99,14 +100,29 @@ export default function HomeLeft({handleLayout}) {
     },
   ];
 
+  const boxStyle ={
+    bgcolor: 'background.paper',
+    width: "100%",
+    position: 'relative',
+    minHeight: 200,
+    padding:'0px 0px 0px 0px',
+    "@media (max-width:400px)":{
+      padding:'0px'
+    }
+  } 
+
+  const ScrollTop = (i)=>{
+    document.querySelectorAll('.SwipeableViews').forEach(e=>{
+      e.scrollTo({
+        top:0,
+        behavior:'smooth'
+      })
+    })
+  }
+
   return (
     <Box
-      sx={{
-        bgcolor: 'background.paper',
-        width: "100%",
-        position: 'relative',
-        minHeight: 200,
-      }}
+      sx={boxStyle}
     >
       <AppBar position="static" color="default">
         <Tabs
@@ -128,13 +144,14 @@ export default function HomeLeft({handleLayout}) {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-           <ListaDeProfissionais />
+           <div className='SwipeableViews'><ListaDeProfissionais /></div>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <Perfil/>
+          <div className='SwipeableViews'> <Perfil/></div>
+         
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          outros
+          <div className='SwipeableViews'>       outros</div>
         </TabPanel>
       </SwipeableViews>
       {fabs.map((fab, index) => (
@@ -144,10 +161,13 @@ export default function HomeLeft({handleLayout}) {
           timeout={transitionDuration}
           style={{
             transitionDelay: `${value === index ? transitionDuration.exit : 0}ms`,
+            position:'absolute',
+            bottom:'3%',
+            right:"8%"
           }}
           unmountOnExit
         >
-          <Fab sx={fab.sx} aria-label={fab.label} color={fab.color}>
+          <Fab sx={fab.sx} aria-label={fab.label} color={fab.color} onClick={()=>ScrollTop(index)}>
             {fab.icon}
           </Fab>
         </Zoom>

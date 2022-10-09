@@ -1,9 +1,9 @@
 import { List } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import Carregando from './Carregando'
-import ElementoDaLista from './HomeLeftContainer/ElementoDaLista'
-import ElementoDaListaMobile from './HomeLeftContainer/ElementosDaListaMobile'
-import './HomeLeft.css'
+import ElementoDaLista from './ElementoDaLista'
+import ElementoDaListaMobile from './ElementosDaListaMobile'
+import '../HomeLeft.css'
 
 
 export default function ListaDeProfissionais() {

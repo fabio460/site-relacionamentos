@@ -45,87 +45,25 @@ export default function Login() {
 
 
 
- async function jwt(){
-    try {
-      const formdata = new FormData()
-      formdata.append('email',email)
-      formdata.append('senha',values.password)
-      let user =await fetch('http://localhost:4000/jwt',{
+  const logar =async ()=>{
+    const formdata = new FormData()
+    formdata.append('email',email)
+    formdata.append('senha',values.password)
+    // o objeto user retorna um jwt e um objeto chamado "usuario" contendo as informações do usuário
+    var user = fetch('https://api-site-relacionamentos.vercel.app/jwt',{
         method:'POST',
         body:formdata
-      }).then(res=>res.json())
-      localStorage.setItem('usuarioLogado',JSON.stringify(user.usuario))
-      navigate('/')
-      
-    } catch (error) {
-      setLabelSenha('senha inválida')
+      }).then(res=>res.json()).then(res=>{
+        if(res){
+          localStorage.setItem('usuarioLogado',JSON.stringify(res.usuario))
+          navigate('/')
+        }
+      })
+    // user.usuario retorna indefinido se o usuario e senha estejam errados
+    if (!user.usuario) {
+      setLabelSenha('usuário ou senha inválidos')
       setErroDeSenha(true)
     }
-   
-  }
-
-  const usuarios = [
-    {
-      email:"fabio@gmail.com",
-      senha:"fabio",
-      userName:"Fabio da Sila"
-    },
-    {
-      email:"ruth@gmail.com",
-      senha:"ruth",
-      userName:"Ruth gome"
-    },
-    {
-      email:"ana@gmail.com",
-      senha:"ana",
-      userName:"Anailza Gomes"
-    },
-  ]
-
-  const logar = ()=>{
-      jwt()
-      // var usuario = usuarios.find(use=>{
-      //   if (use.email === email && use.senha === values.password) {
-      //     return use
-      //   }else{
-      //     return false
-      //   }
-      // })
-
-      // var existeEmail = usuarios.find(e=>{
-      //   if (e.email === email) {
-      //     return true
-      //   }else{
-      //     return false
-      //   } 
-      // })
-      
-      // var existeSenha = usuarios.find(e=>{
-      //   if (e.senha === values.password && e.email === email) {
-      //     return true
-      //   }else{
-      //     return false
-      //   } 
-      // })
-
-      // if(!existeEmail){
-      //   setErroDeEmail(true)
-      //   setLabelEmail('usuario inexistente')
-      // }else{
-      //   setErroDeEmail(false)
-      //   setLabelEmail('email')
-      // }
-
-      // if (!existeSenha) {
-      //   setErroDeSenha(true)
-      //   setLabelSenha('senha inválida')
-      // } else {
-      //   setErroDeSenha(false)
-      //   setLabelSenha('senha')
-      // }
-
-
-   
   }
 
 
@@ -159,7 +97,7 @@ export default function Login() {
           <div className='loginBodyRight' >
             <div>
               
-              <IconButton aria-label="delete" onClick={()=>navigate('/')}>
+              <IconButton aria-label="home" onClick={()=>navigate('/')}>
                 <HomeIcon color={'primary'} />
               </IconButton>
             

@@ -1,7 +1,25 @@
 .ElementoDaListaMobile{
     display: none;
 }
+.SwipeableViews{
+    height: 80vh;
+    width: 100%;
+    overflow-y: scroll;
+}
+.SwipeableViews::-webkit-scrollbar{
+    width: 10px;
+}
+.SwipeableViews::-webkit-scrollbar-thumb{
+   background-color: rgb(220, 230, 255);
+}
 
+.perfil{
+    padding: 15px;
+}
+.PerfilAvatar, .perfilNome {
+    display: flex;
+    justify-content: center;
+}
 @media (max-width:400px) {
     .ElementoDaLista{
         display: none;

@@ -18,6 +18,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import {useNavigate} from 'react-router-dom'
 import { Avatar } from '@mui/material';
 import './AppBar.css';
+import { iniciais } from '../uteis';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -64,6 +65,7 @@ export default function Header() {
  
   var user = localStorage.getItem('usuarioLogado')
   let usuarioLogado = JSON.parse(user)
+  
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -97,6 +99,7 @@ export default function Header() {
     localStorage.setItem('usuarioLogado',null)
     handleMenuClose()
     handleMobileMenuClose();
+    window.location.reload()
   }
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -178,20 +181,7 @@ export default function Header() {
   );
 
 
- 
   
-
-  // React.useEffect(()=>{
-  //   let userObjeto = JSON.parse(user)
-  //   setUsuarioLogado(userObjeto)
-  //   console.log(userObjeto)
-  // },[user])
-
-  function iniciais(texto) {
-    let t = texto.split('')
-    return t[0]
-  }
-  console.log(usuarioLogado)
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="inherit" enableColorOnDark>
