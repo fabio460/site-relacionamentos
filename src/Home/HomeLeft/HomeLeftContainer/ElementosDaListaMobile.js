@@ -1,6 +1,7 @@
 import { Avatar, ListItem, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { ramdomColors } from '../../../uteis'
 
 export default function ElementoDaListaMobile({item}) {
     const dispath = useDispatch()
@@ -22,7 +23,7 @@ export default function ElementoDaListaMobile({item}) {
     <ListItemButton className='' onClick={()=> getItem(item)}>
         <ListItem  disablePadding>
           <ListItemAvatar>
-            <Avatar sx={{bgcolor:'blue'}} src={item.imagemPerfil} alt={item.nome}>
+            <Avatar sx={{bgcolor:ramdomColors}} src={item.imagemPerfil} alt={item.nome}>
               {semAvatar(item.nome)}
             </Avatar>
           </ListItemAvatar>

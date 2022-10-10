@@ -64,6 +64,7 @@ export default function HomeRight() {
                     <Typography>{pessoa.observacoesFinais}</Typography>
                  </div>
               </div>
+              
               <ChatButton/>
             </div>
           :<div className='elementoVazio'>

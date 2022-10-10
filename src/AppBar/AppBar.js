@@ -18,7 +18,7 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import {useNavigate} from 'react-router-dom'
 import { Avatar } from '@mui/material';
 import './AppBar.css';
-import { iniciais } from '../uteis';
+import { iniciais, ramdomColors } from '../uteis';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -196,7 +196,7 @@ export default function Header() {
               sx={{ mr: 2 }}
             >
               <Avatar 
-                sx={{bgcolor:"#0288d1"}}
+                sx={{bgcolor:ramdomColors}}
                 src={usuarioLogado && usuarioLogado.imagemPerfil}   
               >
                  {usuarioLogado &&  iniciais(usuarioLogado.nome)}
@@ -253,7 +253,7 @@ export default function Header() {
             >
               {/* <Avatar sx={{color:'white',background:"#0288d1"}} b>f</Avatar> */}
               <Avatar 
-                 sx={{background:'#0288d1'}}
+                 sx={{background:ramdomColors}}
                  src={usuarioLogado && usuarioLogado.imagemPerfil}   
               >
                  {usuarioLogado && iniciais(usuarioLogado.nome)}
