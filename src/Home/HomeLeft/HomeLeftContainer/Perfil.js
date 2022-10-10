@@ -3,6 +3,10 @@ import { Avatar, Button, Divider, Typography } from '@mui/material';
 import { iniciais } from '../../../uteis';
 import { Stack } from '@mui/system';
 import CallIcon from '@mui/icons-material/Call';
+import EmailIcon from '@mui/icons-material/Email';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import StreetviewIcon from '@mui/icons-material/Streetview';
 export default function Perfil() {
   // se hover usuario logado vou mostrar os dados, se não outra tela aparece 
 
@@ -38,27 +42,22 @@ export default function Perfil() {
                 <div>{usuarioLogado.telefone}</div>
               </Typography>
               <Typography sx={{display:'flex',alignItems:'center',margin:'5px 0px'}}>
-                <Avatar sx={{marginRight:'15px'}}><CallIcon/></Avatar>
+                <Avatar sx={{marginRight:'15px'}}><EmailIcon/></Avatar>
                 <div>{usuarioLogado.email}</div>
               </Typography>
           </div>
           <div className='PerfilBlocos'>
             <Typography sx={{display:'flex',alignItems:'center'}}>
-               <Avatar sx={{marginRight:'15px'}}><CallIcon/></Avatar>
-               <div>{usuarioLogado.rua}</div>
+               <Avatar sx={{marginRight:'15px'}}><LocationCityIcon/></Avatar>
+               <div>{usuarioLogado.estado}</div>
             </Typography>
             <Typography sx={{display:'flex',alignItems:'center',margin:'5px 0px'}}>
-               <Avatar sx={{marginRight:'15px'}}><CallIcon/></Avatar>
-               <div>{usuarioLogado.logradouro}</div>
+               <Avatar sx={{marginRight:'15px'}}><ApartmentIcon/></Avatar>
+               <div>{usuarioLogado.cidade}</div>
             </Typography>
             <Typography sx={{display:'flex',alignItems:'center'}}>
-               <Avatar sx={{marginRight:'15px'}}><CallIcon/></Avatar>
-               <div>{usuarioLogado.complemento}</div>
-            </Typography>
-
-            <Typography sx={{display:'flex',alignItems:'center',margin:'5px 0px'}}>
-               <Avatar sx={{marginRight:'15px'}}><CallIcon/></Avatar>
-               <div>{usuarioLogado.cidade}</div>
+               <Avatar sx={{marginRight:'15px'}}><StreetviewIcon/></Avatar>
+               <div>{usuarioLogado.rua} - {usuarioLogado.logradouro} {usuarioLogado.complemento}</div>
             </Typography>
           </div>
         </div>:

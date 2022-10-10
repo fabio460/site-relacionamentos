@@ -1,13 +1,24 @@
-import { Avatar } from '@mui/material'
+import { Avatar, Divider, Typography } from '@mui/material'
 import React from 'react'
 import { useSelector } from 'react-redux'
-
+import './HomeRight.css'
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import HomeWorkIcon from '@mui/icons-material/HomeWork';
+import EngineeringIcon from '@mui/icons-material/Engineering';
+import ChatButton from './ChatButton';
 export default function HomeRight() {
    
   const pessoa = useSelector(state=>state.PessoaReducer.pessoaDados)  
 
   const styleAvatar = {
-    width:'200px',height:"200px",marginLeft:'10px',fontSize:"70px",color:'blue',bgcolor:"white",border:"black 1px solid",
+     width:'200px',
+     height:"200px",
+     marginLeft:'10px',
+     fontSize:"70px",
+     color:'blue',
+     bgcolor:"white",
+     border:"black 1px solid",
+     marginTop:"10px",
     "@media (max-width:400px)":{
         width:"100px",
         height:'100px',
@@ -23,29 +34,37 @@ export default function HomeRight() {
         {
           pessoa._id 
           ?<div>
-              <div className=' HomeRightHeader'>
-                    <div className=' '>
+              <div className=''>
+                    <div className='HomeRightHeader'>
                         <Avatar sx={styleAvatar} src={pessoa.imagemPerfil}>{semAvatar(pessoa.nome)}</Avatar>
-                    </div>
-                    <div className=''>
                         <h1 className='HomeRightNome'>{pessoa.nome}</h1>
                     </div>
               </div>
               <div className='HomeRightDados'>
-                 <h3>Profissão: {pessoa.profissao}</h3>
-                 <h3>Cidade: {pessoa.cidade}</h3>
-
-                 <h3>Estado: {pessoa.estado}</h3>
-                 <h3>logradouro: {pessoa.logradouro}</h3>
-                 <h3>rua: {pessoa.rua}</h3>
-                 <h3>complemento: {pessoa.complemento}</h3>
-                 <h3>telefone: {pessoa.telefone}</h3>
-                 <h3>observacoesFinais: {pessoa.observacoesFinais}</h3>
-
-
-                 <h3>outrasHabilidades: {pessoa.outrasHabilidades}</h3>
+                 <div className='HomeRightDadosItems'>
+                    <Avatar sx={{width:'80px',height:'80px',bgcolor:'#0288d1'}}><AccountBoxIcon sx={{width:'60px',height:'60px'}}/></Avatar>
+                    <h3>Contatos</h3>
+                    <Typography>{pessoa.email}</Typography>
+                    <Typography>{pessoa.telefone}</Typography>
+                 </div>
+              
+                 <div className='HomeRightDadosItems'>
+                    <Avatar sx={{width:'80px',height:'80px',bgcolor:'#0288d1'}}><HomeWorkIcon sx={{width:'60px',height:'60px'}}/></Avatar>
+                    <h3>Localidade</h3>
+                    <Typography>{pessoa.rua} - {pessoa.logradouro} {pessoa.complemento}</Typography>
+                    <Typography>{pessoa.cidade}</Typography>
+                    <Typography>{pessoa.estado}</Typography>
+                 </div>
                 
+                 <div className='HomeRightDadosItems'>
+                    <Avatar sx={{width:'80px',height:'80px',bgcolor:'#0288d1'}}><EngineeringIcon sx={{width:'60px',height:'60px'}}/></Avatar>
+                    <h3>Serviços</h3>
+                    <Typography>{pessoa.profissao}</Typography>
+                    <Typography>{pessoa.outrasHabilidades}</Typography>
+                    <Typography>{pessoa.observacoesFinais}</Typography>
+                 </div>
               </div>
+              <ChatButton/>
             </div>
           :<div className='elementoVazio'>
             selecione um elemento

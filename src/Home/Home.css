@@ -1,26 +1,9 @@
-.homeLeft{
 
-   height: 90vh;
-   width: 40%;
-   padding: 0px;
-}
 
-.homeRight{
-    padding: 0;
-    height: 90vh;
-    overflow-y: scroll;
-    width: 100%;
-    /* overflow-x: hidden; */
-}
 .homeMobileLeft, .homeMobileRight, .btnMobileAppBar{
     display: none;
 }
-.HomeRightHeader{
-    background-color: #0288d1;
-    margin-bottom: 100px;
-    display: flex;
-    height: 150px;
-}
+
 .btnMobileAppBar{
     margin: 0px 0px 15px 15px;
 }
@@ -29,9 +12,7 @@
     width: 100%;
     margin: auto;
 }
-.HomeRightNome{
-    color: white;
-}
+
 .elementoDaLista{
     display: flex;
     margin: 3%;
@@ -46,9 +27,7 @@
 .elementoDaListaAvatar{
     margin-right: 5%;
 }
-.HomeRigthImg{
-    max-height: 400px;
-}
+
 .elementoVazio{
     display: flex;
     justify-content: center;
@@ -67,16 +46,5 @@
     }
     .homeLeft, .homeRight{
         display: none;
-    }
-    .HomeRightContainer{
-        width: 100vw;
-    }
-    .HomeRightHeader{
-        height: 120px;
-        justify-content: space-around;
-        align-items: center;
-    }
-    .HomeRightDados{
-        padding: 3%;
     }
 }

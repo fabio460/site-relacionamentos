@@ -1,3 +1,10 @@
+
+.homeLeft{
+    height: 90vh;
+    width: 40%;
+    padding: 0px;
+ }
+ 
 .ElementoDaListaMobile{
     display: none;
 }

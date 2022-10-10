@@ -1,0 +1,89 @@
+.HomeRightHeader{
+    background-color: #0288d1;
+    margin-bottom: 100px;
+    display: flex;
+    
+    height: 150px;
+    color: white;
+}
+.homeRight{
+    padding: 0;
+    height: 90vh;
+   
+    width: 100%;
+    /* overflow-x: hidden; */
+}
+.HomeRightNome{
+    color: white;
+    margin: 20px;
+}
+.HomeRightDados{
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr)
+}
+.HomeRigthImg{
+    max-height: 400px;
+}
+.HomeRightDadosItems{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.chatContainer{
+    background-color: white;
+    box-shadow: 1px 1px 5px black;
+    width: 300px;
+    height: 450px;
+    border-radius: 5px;
+}
+.visible{
+   position: absolute;
+   right: 70px;
+   bottom: 70px;
+   transition: 0.1s;
+   opacity: 1;
+   z-index: 2;
+}
+.invisible{
+    position: fixed;
+    right: -50px;
+    bottom: -10px;
+    transition: 0.1s;
+    opacity: 0;
+}
+.chatBackgroundFull{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+
+}
+@media (max-width:400px) {
+    .chatContainer{
+      width:250px ;
+    }
+    .visible{
+        right: 70px;
+    }
+    .HomeRightContainer{
+        width: 100vw;
+    }
+    .HomeRightHeader{
+        height: 120px;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .HomeRightDados{
+        padding: 3%;
+    }
+    .HomeRightDados{
+       grid-template-columns: 1fr;
+    }
+    .HomeRightDadosItems{
+        margin-bottom: 40px;
+    }
+}
