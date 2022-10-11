@@ -4,7 +4,11 @@
     width: 40%;
     padding: 0px;
  }
- 
+ .ElementoDaLista{
+    background-color: white;
+    margin: 0px 10px;
+    border-radius: 10px;
+ }
 .ElementoDaListaMobile{
     display: none;
 }

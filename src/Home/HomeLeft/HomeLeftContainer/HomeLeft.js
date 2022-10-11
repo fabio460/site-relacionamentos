@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React,{useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
 import { useTheme } from '@mui/material/styles';
@@ -14,8 +14,9 @@ import UpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { green } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Perfil from './Perfil';
-import ListaDeProfissionais from '../HomeLeftContainer/ListaDeProfissionais';
+import TelaDeListaDeProfissionais from '../HomeLeftContainer/TelaDeListaDeProfissionais';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import { Pagination, Stack } from '@mui/material';
 //import ListaDeProfissionais from './ListaDeProfissionais';
 
 function TabPanel(props) {
@@ -65,6 +66,22 @@ const fabGreenStyle = {
 export default function HomeLeft({handleLayout}) {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
+  const [page, setPage] = React.useState(1);
+
+  const handleChangePage = (event, value) => {
+    setPage(value);
+  };
+
+  const intervalo = 4
+  const [paginaInicial, setpaginaInicial] = useState(1)
+  const [paginaFinal, setpaginaFinal] = useState(intervalo)
+  const [TamanhoList, setTamanhoList] = useState(10)
+
+
+ useEffect(()=>{
+  setpaginaInicial( intervalo*page - intervalo)
+  setpaginaFinal( intervalo*page - 1)
+ },[page])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -145,7 +162,12 @@ export default function HomeLeft({handleLayout}) {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-           <div className='SwipeableViews SwipeableViewsList'><ListaDeProfissionais /></div>
+           <div className='SwipeableViews SwipeableViewsList'>
+              <TelaDeListaDeProfissionais paginaInicial={paginaInicial} paginaFinal={paginaFinal} setTamanhoList={setTamanhoList}/>
+              <div style={{display:'flex',justifyContent:'center',alignItems:'center',height:'50px'}}>
+                <Pagination count={Math.ceil(TamanhoList/intervalo)} variant="outlined" color="secondary" page={page} onChange={handleChangePage}/>
+              </div>
+            </div>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <div className='SwipeableViews'> <Perfil/></div>
@@ -155,7 +177,7 @@ export default function HomeLeft({handleLayout}) {
           <div className='SwipeableViews'>       outros</div>
         </TabPanel>
       </SwipeableViews>
-      {fabs.map((fab, index) => (
+      {/* {fabs.map((fab, index) => (
         <Zoom
           key={fab.color}
           in={value === index}
@@ -171,8 +193,8 @@ export default function HomeLeft({handleLayout}) {
           <Fab sx={fab.sx} aria-label={fab.label} color={fab.color} onClick={()=>ScrollTop(index)}>
             {fab.icon}
           </Fab>
-        </Zoom>
-      ))}
+        </Zoom> */}
+      {/* ))} */}
     </Box>
   );
 }
