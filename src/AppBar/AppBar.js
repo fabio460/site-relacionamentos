@@ -19,6 +19,7 @@ import {useNavigate} from 'react-router-dom'
 import { Avatar } from '@mui/material';
 import './AppBar.css';
 import { iniciais, ramdomColors } from '../uteis';
+import { useDispatch } from 'react-redux';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -184,12 +185,18 @@ export default function Header() {
   );
 
 
+  const [search,setSearch]=React.useState(" ")
+  const dispatch = useDispatch()
+  dispatch({
+    type:'search',
+    payload:{search}
+  })
   
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="inherit" enableColorOnDark>
         <Toolbar>
-
+          
           <div className='AppBarAvatar'>
             <IconButton
               size="large"
@@ -220,7 +227,11 @@ export default function Header() {
               <span>Bicos FS </span>  
             </h5>
           </Typography>
-          <Search sx={{border:"#0288d1 solid 1px",color:""}}>
+          <Search 
+             sx={{border:"#0288d1 solid 1px",color:""}}
+             onChange={e=>setSearch(e.target.value)}
+             >
+            
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>

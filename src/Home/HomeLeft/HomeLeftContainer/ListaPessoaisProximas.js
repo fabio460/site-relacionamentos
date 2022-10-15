@@ -17,6 +17,7 @@ export default function ListaPessoaisProximas({paginaInicial,paginaFinal,setTama
     const apiRemota = 'https://api-site-relacionamentos.vercel.app/getUsuarios'
     const l =await fetch(apiRemota).then(res=>res.json())
 
+    
 
     var filtroPorBairro = []
 
