@@ -54,6 +54,7 @@ export default function PerfilEditar() {
     if (Object.telefone !== undefined) formdata.append('telefone',Object.telefone)
    
     if (Object.nome !== undefined) formdata.append('nome',Object.nome)
+    if (Object.email !== undefined) formdata.append('email',Object.email)
     if (Object.estado !== undefined) formdata.append('estado',Object.estado)
     if (Object.cidade !== undefined) formdata.append('cidade',Object.cidade)
     if (Object.bairro !== undefined) formdata.append('bairro',Object.bairro)

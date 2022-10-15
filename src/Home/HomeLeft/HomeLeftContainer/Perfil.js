@@ -33,7 +33,7 @@ export default function Perfil({setPerfilEdit}) {
     }
     
   },[])
-  console.log(userLogged)
+  
   return (
     <div className='perfil'>
       {/* {userLogged !== undefined &&
