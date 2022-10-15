@@ -30,7 +30,7 @@ export default function ElementoDaListaMobile({item}) {
           <ListItemText primary={item.nome} secondary={
             <div>
               <div>Prof: {item.profissao}</div>
-              <div>Cidade: {item.cidade}</div>
+              <div>Bairro: {item.bairro}</div>
               
             </div>
           

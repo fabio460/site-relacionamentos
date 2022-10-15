@@ -17,6 +17,9 @@ import Perfil from './Perfil';
 import TelaDeListaDeProfissionais from '../HomeLeftContainer/TelaDeListaDeProfissionais';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import { Pagination, Stack } from '@mui/material';
+import ControlledRadioButtonsGroup from './ControlledRadioButtonsGroup';
+import ListaPessoaisProximas from './ListaPessoaisProximas';
+import PerfilEditar from './PerfilEditar';
 //import ListaDeProfissionais from './ListaDeProfissionais';
 
 function TabPanel(props) {
@@ -67,24 +70,28 @@ export default function HomeLeft({handleLayout}) {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
   const [page, setPage] = React.useState(1);
+  const [PerfilEdit, setPerfilEdit] = useState(false)
 
   const handleChangePage = (event, value) => {
+    ScrollTop()
     setPage(value);
+    
   };
 
-  const intervalo = 4
+  const [intervaloDePaginacao, setintervaloDePaginacao] = useState(8)
   const [paginaInicial, setpaginaInicial] = useState(1)
-  const [paginaFinal, setpaginaFinal] = useState(intervalo)
-  const [TamanhoList, setTamanhoList] = useState(10)
+  const [paginaFinal, setpaginaFinal] = useState(intervaloDePaginacao)
+  const [TamanhoList, setTamanhoList] = useState()
 
 
  useEffect(()=>{
-  setpaginaInicial( intervalo*page - intervalo)
-  setpaginaFinal( intervalo*page - 1)
+  setpaginaInicial( intervaloDePaginacao*page - intervaloDePaginacao)
+  setpaginaFinal( intervaloDePaginacao*page - 1)
  },[page])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    setPage(1)
   };
 
   const handleChangeIndex = (index) => {
@@ -151,9 +158,9 @@ export default function HomeLeft({handleLayout}) {
           aria-label=""
           sx={{padding:"5px"}}
         >
-          <Tab label="Lista" {...a11yProps(0)} />
-          <Tab label="Perfil" {...a11yProps(1)} />
-          <Tab label="outros" {...a11yProps(2)} />
+          <Tab label="todos" {...a11yProps(0)} sx={{fontSize:'11px'}}/>
+          <Tab label="Perfil" {...a11yProps(1)} sx={{fontSize:'11px'}}/>
+          <Tab label="perto de mim" {...a11yProps(2)} sx={{fontSize:'11px'}}/>
         </Tabs>
       </Box>
       <SwipeableViews
@@ -162,19 +169,38 @@ export default function HomeLeft({handleLayout}) {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-           <div className='SwipeableViews SwipeableViewsList'>
-              <TelaDeListaDeProfissionais paginaInicial={paginaInicial} paginaFinal={paginaFinal} setTamanhoList={setTamanhoList}/>
-              <div style={{display:'flex',justifyContent:'center',alignItems:'center',height:'50px'}}>
-                <Pagination count={Math.ceil(TamanhoList/intervalo)} variant="outlined" color="secondary" page={page} onChange={handleChangePage}/>
-              </div>
-            </div>
+            <div className='SwipeableViews SwipeableViewsList'>
+            <TelaDeListaDeProfissionais
+              paginaInicial={paginaInicial}
+              paginaFinal={paginaFinal}
+              setTamanhoList={setTamanhoList}
+            />
+           <div className='paginacao' style={{display:'flex',justifyContent:'center',alignItems:'center',height:'50px'}}>
+            <Pagination count={Math.ceil(TamanhoList/intervaloDePaginacao)} variant="outlined" color="secondary" page={page} onChange={handleChangePage}/>
+          </div>
+          </div>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <div className='SwipeableViews'> <Perfil/></div>
-         
+          <div className='SwipeableViews  SwipeableViewsList'>
+            {
+              PerfilEdit
+              ? <div className='SwipeableViews'><PerfilEditar/></div>
+              : <div className='SwipeableViews'> <Perfil setPerfilEdit={setPerfilEdit}/></div>
+            }            
+          </div>        
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          <div className='SwipeableViews'>       outros</div>
+        <div className='SwipeableViews  SwipeableViewsList'>
+              {/* <ControlledRadioButtonsGroup setintervaloDePaginacao={setintervaloDePaginacao} /> */}
+              < ListaPessoaisProximas
+                 paginaInicial={paginaInicial}
+                 paginaFinal={paginaFinal}
+                 setTamanhoList={setTamanhoList}
+              />
+              <div className='paginacao' style={{display:'flex',justifyContent:'center',alignItems:'center',height:'50px'}}>
+                <Pagination count={Math.ceil(TamanhoList/intervaloDePaginacao)} variant="outlined" color="secondary" page={page} onChange={handleChangePage}/>
+              </div>
+            </div>
         </TabPanel>
       </SwipeableViews>
       {/* {fabs.map((fab, index) => (

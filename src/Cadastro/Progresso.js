@@ -15,6 +15,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import LoginIcon from '@mui/icons-material/Login';
 import { IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { linkLocal, linkRemoto } from '../uteis';
 
 
 export default function Progresso() {
@@ -43,6 +44,7 @@ export default function Progresso() {
   const [telefone, setTelefone] = useState('')
   const [imagemPerfil,setImagemPerfil]=useState()
   const [ImagemAvatar, setImagemAvatar] = useState('https://support.logmeinrescue.com/assets/images/care/topnav/default-user-avatar.jpg')
+  const [emailExistente,setEmailExistente]=useState(false)
   const steps = [
     {
       label: <ProgressoHeader ativo={0}/>,
@@ -66,6 +68,7 @@ export default function Progresso() {
         setImagemPerfil={setImagemPerfil}
         setImagemAvatar={setImagemAvatar}
         ImagemAvatar={ImagemAvatar}
+        emailExistente={emailExistente}
       />,
     },
     {
@@ -126,54 +129,78 @@ export default function Progresso() {
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = steps.length;
 
-  
-  const handleNext = () => {
+  const [verificandoEmail, setverificandoEmail] = useState('null')
+
+
+  async function getUsuarioPorEmail() {
+    const formdata = new FormData()
+    formdata.append('email',email)
+    let emailExistente = await fetch(linkRemoto+'getUsuarioPorEmail',{
+      method:'post',
+      body:formdata
+    }).then(res=>res.json()).then(res=>{
+      if(res.length > 0){
+        setEmailExistente(true)
+       
+      }else{
+        setEmailExistente(false)
+      }
+    })
+  }
+
+  getUsuarioPorEmail()
+  const handleNext = async() => {
+
     let emailValido = email.search(/^[a-z]+(@){1}[a-z]+(.com)(.br)*$/)
     let nomeValido = nome.search(/^([a-zA-Z])+$/)
     let senhaValida = senha.search(/^[a-zA-Z0-9@#$%&*]{5}/)
     
-
-    if (emailValido === 0) {
-      setemailValido(false)
-      if (nome !== '') {
-        setcampoNulo(false)
-        if (senha !== '') {
-          setsenhaNula(false)
-          if (senhaValida === 0) {
-            setsenhaInvalida(false)
-            // setActiveStep((prevActiveStep) => prevActiveStep + 1);
-            if (senha === confirmaSenha) {
-              
-              setsenhasNaoConferem(false)
-              if (activeStep === 0) {
-                setActiveStep((prevActiveStep) => prevActiveStep + 1);
-              } else {
-                if (cepvalido) {
-                  setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      if (!emailExistente) {
+        if (emailValido === 0) {
+          setemailValido(false)
+          if (nome !== '') {
+            setcampoNulo(false)
+            if (senha !== '') {
+              setsenhaNula(false)
+              if (senhaValida === 0) {
+                setsenhaInvalida(false)
+                // setActiveStep((prevActiveStep) => prevActiveStep + 1);
+                if (senha === confirmaSenha) {
+                  
+                  setsenhasNaoConferem(false)
+                  if (activeStep === 0) {
+                    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+                  } else {
+                    if (cepvalido) {
+                      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+                    }
+                  }
+                  
+                } else {
+                  setsenhaInvalida(false)
+                  setsenhasNaoConferem(true)
                 }
+              } else {
+                setsenhaInvalida(true)
               }
-              
             } else {
+              setsenhaNula(true)
               setsenhaInvalida(false)
-              setsenhasNaoConferem(true)
+              setsenhasNaoConferem(false)
             }
-          } else {
-            setsenhaInvalida(true)
+          }else{
+            setcampoNulo(true)
+            setsenhaInvalida(false)
+            setsenhasNaoConferem(false)
           }
-        } else {
-          setsenhaNula(true)
-          setsenhaInvalida(false)
+        }else{
+          setemailValido(true)
           setsenhasNaoConferem(false)
-        }
-      }else{
-        setcampoNulo(true)
-        setsenhaInvalida(false)
-        setsenhasNaoConferem(false)
-      }
-    }else{
-      setemailValido(true)
-      setsenhasNaoConferem(false)
-    }
+        }   
+      } 
+
+     
+   
   };
 
   const handleBack = () => {

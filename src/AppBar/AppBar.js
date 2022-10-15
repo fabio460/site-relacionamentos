@@ -120,9 +120,12 @@ export default function Header() {
     >
       {user !== 'null'      
       ? <MenuItem onClick={deslogar}>Deslogar</MenuItem>
-      : <MenuItem onClick={logar}>Logar</MenuItem>
+      : <div>
+        <MenuItem onClick={logar}>Logar</MenuItem>
+        <MenuItem onClick={cadastrar}>Cadastrar</MenuItem>
+      </div>
       }
-      <MenuItem onClick={cadastrar}>Cadastrar</MenuItem>
+      
     </Menu>
   );
 

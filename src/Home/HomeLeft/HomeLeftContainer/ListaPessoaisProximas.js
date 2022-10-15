@@ -6,7 +6,7 @@ import ElementoDaListaMobile from './ElementosDaListaMobile'
 import '../HomeLeft.css'
 
 
-export default function ListaDeProfissionais({paginaInicial,paginaFinal,setTamanhoList}) {
+export default function ListaPessoaisProximas({paginaInicial,paginaFinal,setTamanhoList}) {
 
   var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
   const [list,setList]=useState([])  
@@ -16,10 +16,28 @@ export default function ListaDeProfissionais({paginaInicial,paginaFinal,setTaman
     const link = 'localhost:4000/getUsuarios'
     const apiRemota = 'https://api-site-relacionamentos.vercel.app/getUsuarios'
     const l =await fetch(apiRemota).then(res=>res.json())
+
+
+    var filtroPorBairro = []
+
+    // if (localStorage.getItem('usuarioLogado')!=='null') {
+      
+    //     filtroPorBairro = l.filter(elem=>{
+          
+    //         if (elem.bairro === usuarioLogado.bairro) {
+    //           console.log(elem.bairro +' - '+usuarioLogado.bairro)
+    //             return elem
+    //         }
+    //     })
+    // }
+    
+
     let listaSemUsuarioLogado=[]
+    //listaSemUsuarioLogado = filtroPorBairro
+
     if (localStorage.getItem('usuarioLogado')!=='null') {
       listaSemUsuarioLogado = l.filter(elem=>{
-        if (usuarioLogado.email !== elem.email) {
+        if (usuarioLogado.email !== elem.email && elem.bairro === usuarioLogado.bairro) {
           return elem
         }
       })
@@ -35,7 +53,6 @@ export default function ListaDeProfissionais({paginaInicial,paginaFinal,setTaman
     setTamanhoList(listaSemUsuarioLogado.length)
     setList(listInterval)
     setVisibleBeforeLoading(false)
-      
   }  
   useEffect(()=>{
     getUsuarios()

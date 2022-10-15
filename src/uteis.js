@@ -8,3 +8,6 @@ export function ramdomColors(cor) {
   
   return colors[Math.floor(Math.random()*colors.length)]
 }  
+
+export const linkRemoto = 'https://api-site-relacionamentos.vercel.app/'
+export const linkLocal = 'http://localhost:4000/'

@@ -52,6 +52,7 @@ export default function HomeRight() {
                     <Avatar sx={{width:'80px',height:'80px',bgcolor:'#0288d1'}}><HomeWorkIcon sx={{width:'60px',height:'60px'}}/></Avatar>
                     <h3>Localidade</h3>
                     <Typography>{pessoa.rua} - {pessoa.logradouro} {pessoa.complemento}</Typography>
+                    <Typography>{pessoa.bairro}</Typography>
                     <Typography>{pessoa.cidade}</Typography>
                     <Typography>{pessoa.estado}</Typography>
                  </div>

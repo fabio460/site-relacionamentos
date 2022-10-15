@@ -28,7 +28,8 @@ export default function Formulario({
      setImagemPerfil,
      imagemPerfil,
      setImagemAvatar,
-     ImagemAvatar
+     ImagemAvatar,
+     emailExistente
     }) {
     
     
@@ -109,6 +110,8 @@ export default function Formulario({
                     
                     />
                     {emailValido &&<div className='labelInvalido'>email inválido</div>}
+                    {emailExistente && <div className='labelInvalido'>este email ja existe</div>}
+                     
                 </FormControl>
                 <FormControl variant="standard" sx={{ marginTop:"20px",color:'white'}} size='small'>
                     <InputLabel  sx={{color:"white"}} htmlFor="component-helper" ><div style={{fontSize:"20px"}}>Nome*</div></InputLabel>
