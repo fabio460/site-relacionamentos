@@ -145,7 +145,7 @@ export default function PerfilEditar() {
               </Typography>
           </div>
           <div className='PerfilBlocos'>
-            <Typography sx={{display:'flex',alignItems:'center'}}>
+            <Typography sx={{display:'flex',alignItems:'center',margin:'2px 0px'}}>
                <Avatar sx={{marginRight:'15px'}}><LocationCityIcon/></Avatar>
                <Input
                   defaultValue={userLogged[0].cidade}
@@ -154,7 +154,7 @@ export default function PerfilEditar() {
                   onChange={e=>setObject({...Object,cidade:e.target.value})}
                 />
             </Typography>
-            <Typography sx={{display:'flex',alignItems:'center',margin:'5px 0px'}}>
+            <Typography sx={{display:'flex',alignItems:'center',margin:'2px 0px'}}>
                <Avatar sx={{marginRight:'15px'}}><ApartmentIcon/></Avatar>
                <Input
                   defaultValue={userLogged[0].bairro}
@@ -163,41 +163,48 @@ export default function PerfilEditar() {
                   onChange={e=>setObject({...Object,bairro:e.target.value})}
                 />
             </Typography>
-            <Typography sx={{display:'flex',alignItems:'center'}}>
-               <Avatar sx={{marginRight:'15px'}}><StreetviewIcon/></Avatar>
-                <div>
-                  <Input
+
+            <Typography sx={{display:'flex',alignItems:'center',margin:'2px 0px'}}>
+               <Avatar sx={{marginRight:'15px'}}><ApartmentIcon/></Avatar>
+               <Input
+                    sx={{maxWidth:'150px'}}
                     defaultValue={userLogged[0].rua}
                     placeholder={userLogged[0].rua}
                     size='small'
                     onChange={e=>setObject({...Object,rua:e.target.value})}
-                  /> -
+                />
                   <Input
+                    sx={{width:'50px',margin:'0px 5px'}}
                     defaultValue={userLogged[0].logradouro}
                     placeholder={userLogged[0].logradouro}
                     size='small'
                     onChange={e=>setObject({...Object,logradouro:e.target.value})}
                   />
                   <Input
+                    sx={{maxWidth:'100px'}}
                     defaultValue={userLogged[0].complemento}
                     placeholder={userLogged[0].complemento ? userLogged[0].complemento : "Complemento" }
                     size='small'
                     onChange={e=>setObject({...Object,complemento:e.target.value})}
                   />
-
+            </Typography>
+            <Typography sx={{display:'flex',alignItems:'center',margin:'2px 0px'}}>
+                  <Avatar sx={{marginRight:'15px'}}><ApartmentIcon/></Avatar>
                   <Input
                     defaultValue={userLogged[0].outrasHabilidades}
                     placeholder={userLogged[0].outrasHabilidades}
                     size='small'
                     onChange={e=>setObject({...Object,outrasHabilidades:e.target.value})}
                   />
+            </Typography>
+            <Typography sx={{display:'flex',alignItems:'center',margin:'2px 0px'}}>
+                  <Avatar sx={{marginRight:'15px'}}><ApartmentIcon/></Avatar>
                   <Input
                     defaultValue={userLogged[0].observacoesFinais}
                     placeholder={userLogged[0].observacoesFinais ? userLogged[0].observacoesFinais : "observacoesFinais" }
                     size='small'
                     onChange={e=>setObject({...Object,observacoesFinais:e.target.value})}
                   />
-                </div>
             </Typography>
           </div>
         </div>:
