@@ -71,7 +71,7 @@
 }
 @media (max-width:400px) {
     .SwipeableViews{
-        height: 67vh;
+        height: 100vh;
         width: 100%;
     
     }

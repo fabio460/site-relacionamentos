@@ -4,6 +4,7 @@ import Carregando from './Carregando'
 import ElementoDaLista from './ElementoDaLista'
 import ElementoDaListaMobile from './ElementosDaListaMobile'
 import '../HomeLeft.css'
+import { useSelector } from 'react-redux'
 
 
 export default function ListaPessoaisProximas({paginaInicial,paginaFinal,setTamanhoList}) {
@@ -11,12 +12,22 @@ export default function ListaPessoaisProximas({paginaInicial,paginaFinal,setTama
   var usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
   const [list,setList]=useState([])  
   const [VisibleBeforeLoading,setVisibleBeforeLoading]=useState(true)
-  
+  let search = useSelector(state=>state.SearchReducer.search)
   async function getUsuarios() {
     const link = 'localhost:4000/getUsuarios'
     const apiRemota = 'https://api-site-relacionamentos.vercel.app/getUsuarios'
-    const l =await fetch(apiRemota).then(res=>res.json())
+    const listaApi =await fetch(apiRemota).then(res=>res.json())
 
+    let listaDeBusca = listaApi.filter(e=>{
+      let searchArray = search.split('')
+      let searchChar1 = searchArray[0]
+      let maiusculo = search.replace(searchChar1,searchChar1.toUpperCase())
+      let minusculo = search.replace(searchChar1,searchChar1.toLowerCase())
+      if (e.nome.includes(maiusculo) || e.nome.includes(minusculo) ) {
+        return e
+      }
+    })
+    let l = listaDeBusca
     
 
     var filtroPorBairro = []
@@ -57,7 +68,7 @@ export default function ListaPessoaisProximas({paginaInicial,paginaFinal,setTama
   }  
   useEffect(()=>{
     getUsuarios()
-  },[paginaInicial])
+  },[paginaInicial,search])
   
   let elementLoadingArray = [0,1,2,3,4,5,6]
   return (

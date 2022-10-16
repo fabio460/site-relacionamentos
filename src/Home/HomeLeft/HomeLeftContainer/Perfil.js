@@ -85,14 +85,19 @@ export default function Perfil({setPerfilEdit}) {
           </div>
 
           <div className='PerfilBlocos'>
-            <Typography sx={{display:'flex',alignItems:'center'}}>
-               <Avatar sx={{marginRight:'15px'}}><BrunchDiningIcon/></Avatar>
-               <div>{userLogged[0].outrasHabilidades}</div>
-            </Typography>
-            <Typography sx={{display:'flex',alignItems:'center',margin:'5px 0px'}}>
-               <Avatar sx={{marginRight:'15px'}}><IntegrationInstructionsIcon/></Avatar>
-               <div>{userLogged[0].observacoesFinais}</div>
-            </Typography>
+            {userLogged[0].outrasHabilidades &&
+                <Typography sx={{display:'flex',alignItems:'center'}}>
+                    <Avatar sx={{marginRight:'15px'}}><BrunchDiningIcon/></Avatar>
+                    <div>{userLogged[0].outrasHabilidades}</div>
+                </Typography>
+            }
+            {userLogged[0].observacoesFinais &&
+                <Typography sx={{display:'flex',alignItems:'center',margin:'5px 0px'}}>
+                    <Avatar sx={{marginRight:'15px'}}><IntegrationInstructionsIcon/></Avatar>
+                    <div>{userLogged[0].observacoesFinais}</div>
+                </Typography>
+            }
+
       
           </div>
         </div>:

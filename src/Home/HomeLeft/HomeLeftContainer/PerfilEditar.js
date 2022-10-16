@@ -16,6 +16,10 @@ export default function PerfilEditar() {
   const [Object, setObject] = useState({})
   const [userLogged, setuserLogged] = useState()
 
+  const editar = ()=>{
+    alert('editar')
+  }
+
   useEffect(async()=>{
     getUsuarioPorId()
     setUsuarioLogado(JSON.parse(localStorage.getItem('usuarioLogado')))
@@ -72,9 +76,11 @@ export default function PerfilEditar() {
      method:'put',
      body:formdata
     })
-      console.log(Object)
+    
       setAtualiza(!atualiza)
-      window.location.reload()
+      setTimeout(() => {
+        window.location.reload()
+      }, 300);
    }
 
   useEffect(()=>{
@@ -117,7 +123,7 @@ export default function PerfilEditar() {
                 <Button variant="contained" sx={{borderRadius:"30px"}} onClick={voltar}>Cancelar</Button>
               </Stack>
           </div>
-
+         
           <div className='PerfilBlocos'>
               <Typography sx={{display:'flex',alignItems:'center'}}>
                 <Avatar sx={{marginRight:'15px'}}><CallIcon/></Avatar>      
@@ -177,6 +183,19 @@ export default function PerfilEditar() {
                     placeholder={userLogged[0].complemento ? userLogged[0].complemento : "Complemento" }
                     size='small'
                     onChange={e=>setObject({...Object,complemento:e.target.value})}
+                  />
+
+                  <Input
+                    defaultValue={userLogged[0].outrasHabilidades}
+                    placeholder={userLogged[0].outrasHabilidades}
+                    size='small'
+                    onChange={e=>setObject({...Object,outrasHabilidades:e.target.value})}
+                  />
+                  <Input
+                    defaultValue={userLogged[0].observacoesFinais}
+                    placeholder={userLogged[0].observacoesFinais ? userLogged[0].observacoesFinais : "observacoesFinais" }
+                    size='small'
+                    onChange={e=>setObject({...Object,observacoesFinais:e.target.value})}
                   />
                 </div>
             </Typography>

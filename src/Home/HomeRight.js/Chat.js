@@ -1,13 +1,15 @@
 import { Avatar, Divider, IconButton, InputBase, Paper, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DirectionsIcon from '@mui/icons-material/Directions';
 import NearMeIcon from '@mui/icons-material/NearMe';
 import { useSelector } from 'react-redux';
 import { iniciais, ramdomColors } from '../../uteis';
+import io from 'socket.io-client'
 export default function Chat() {
     const pessoa = useSelector(state=>state.PessoaReducer.pessoaDados)  
     const [mensageArray, setMensageArray] = useState([])
     const [mensage, setmensage] = useState('')
+
     const chat = ()=>{
       setMensageArray(e=>[...e,mensage])
       setmensage('')
@@ -17,6 +19,20 @@ export default function Chat() {
         chat()
       }
     }
+    
+    // const socket = io.connect('https://localhost:4000')
+    const [Mensagem, setMensagem] = useState([])
+    const socket = io.connect("http://localhost:3001");
+
+
+    useEffect(()=>{
+      socket.on("men",data=>{
+        setMensagem(data)
+        console.log(data)
+      });
+    },[])
+
+
   return (
     <div className='chatConainerBody'>
        <div className='chatConainerBodyHeader'>
@@ -26,6 +42,11 @@ export default function Chat() {
        <div className='chatConainerBodyContent'>
           {mensageArray.map(elem=>{
             return <div>{elem}</div>
+          })}
+          {Mensagem.map(e=>{ 
+            return <div>
+              <strong>{e.nome}</strong> : {e.mensagem}
+            </div>
           })}
        </div>
        <div className='chatConainerBodyFooter'>

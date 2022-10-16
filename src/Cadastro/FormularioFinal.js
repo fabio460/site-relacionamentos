@@ -1,6 +1,8 @@
 import React,{useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 import { Box, Button, FormControl, Input, InputLabel } from '@mui/material'
 import Confirmar from './Confirmar'
+import { linkRemoto } from '../uteis'
 export default function FormularioFinal({
   setprofissao,
   setoutrasHabilidades,
@@ -26,18 +28,7 @@ export default function FormularioFinal({
   ImagemAvatar
 }) {
   
-
-  
-  const enviar = (e)=>{
-
-
-  }
-
-  const link2 = 'http://localhost:4000/'
-  const link = "https://api-site-relacionamentos.vercel.app/"
-
-
-
+  const navigate = useNavigate()
   const cadastrar = ()=>{
     console.log(imagemPerfil+" - "+ImagemAvatar)
       if (profissao !== '') {
@@ -70,13 +61,14 @@ export default function FormularioFinal({
         formdata.append('outrasHabilidades',outrasHabilidades)
         //post dos dados
         
-        fetch(link+"setUsuario",{
+        fetch(linkRemoto+"setUsuario",{
           method:"post",
           body:formdata
         })
 
         
         alert('Profissional '+nome+' cadastrado com sucesso')
+        navigate('/login')
       }else{
         setvalidaProfissao(true)
       }
