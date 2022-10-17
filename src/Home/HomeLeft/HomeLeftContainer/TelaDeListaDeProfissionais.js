@@ -5,6 +5,7 @@ import ElementoDaLista from './ElementoDaLista'
 import ElementoDaListaMobile from './ElementosDaListaMobile'
 import '../HomeLeft.css'
 import { useSelector } from 'react-redux'
+import { linkLocal, linkRemoto } from '../../../uteis'
 
 
 export default function ListaDeProfissionais({paginaInicial,paginaFinal,setTamanhoList}) {
@@ -20,9 +21,7 @@ export default function ListaDeProfissionais({paginaInicial,paginaFinal,setTaman
     window.location.reload()   
   }
   async function getUsuarios() {
-    const link = 'localhost:4000/getUsuarios'
-    const apiRemota = 'https://api-site-relacionamentos.vercel.app/getUsuarios'
-    const listaApi =await fetch(apiRemota).then(res=>res.json())
+    const listaApi =await fetch(linkRemoto+'getUsuarios').then(res=>res.json())
     
     let listaDeBusca = listaApi.filter(e=>{
       let searchArray = search.split('')

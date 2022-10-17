@@ -3,15 +3,23 @@ import React, { useEffect, useState } from 'react'
 import DirectionsIcon from '@mui/icons-material/Directions';
 import NearMeIcon from '@mui/icons-material/NearMe';
 import { useSelector } from 'react-redux';
-import { iniciais, ramdomColors } from '../../uteis';
+import { iniciais, linkLocal, linkRemoto, ramdomColors } from '../../uteis';
 import io from 'socket.io-client'
 export default function Chat() {
     const pessoa = useSelector(state=>state.PessoaReducer.pessoaDados)  
     const [mensageArray, setMensageArray] = useState([])
+    const [Mensagem, setMensagem] = useState([])
     const [mensage, setmensage] = useState('')
-
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'))
     const chat = ()=>{
-      setMensageArray(e=>[...e,mensage])
+      socket.emit("msg",{
+        room:usuarioLogado._id + pessoa._id,
+        idEmissor:usuarioLogado._id,
+        idReceptor:pessoa._id,     
+        enviadoPor:usuarioLogado.nome,
+        recebidoPor:pessoa.nome,
+        bodyMsg:mensage,
+      })
       setmensage('')
     }
     const chatOnKeyUp = (e)=>{
@@ -20,32 +28,38 @@ export default function Chat() {
       }
     }
     
-    // const socket = io.connect('https://localhost:4000')
-    const [Mensagem, setMensagem] = useState([])
-    const socket = io.connect("http://localhost:3001");
-
-
+    const socket = io.connect(linkRemoto);
     useEffect(()=>{
-      socket.on("men",data=>{
-        setMensagem(data)
-        console.log(data)
+      socket.on("men",async data=>{
+        let m = await data
+        
+        let res =await data.filter((elem,key)=>{
+          let chave = key
+          if (elem.room === usuarioLogado._id + pessoa._id || elem.room === pessoa._id + usuarioLogado._id) {
+            return elem
+          }
+        })
+        setMensagem(res.reverse())
+        socket.disconnect();  
       });
-    },[])
+     
+    },[socket])
 
 
   return (
     <div className='chatConainerBody'>
        <div className='chatConainerBodyHeader'>
-          <Avatar src={pessoa.imagemPerfil} sx={{width:'30px',height:'30px',marginRight:'5px',bgcolor:ramdomColors}}>{iniciais(pessoa.nome)}</Avatar>
+          <Avatar src={pessoa.imagemPerfil} sx={{width:'30px',height:'30px',marginRight:'5px',bgcolor:'black'}}>{iniciais(pessoa.nome)}</Avatar>
           <Typography>{pessoa.nome}</Typography>
        </div>
        <div className='chatConainerBodyContent'>
-          {mensageArray.map(elem=>{
-            return <div>{elem}</div>
-          })}
-          {Mensagem.map(e=>{ 
-            return <div>
-              <strong>{e.nome}</strong> : {e.mensagem}
+          
+          {Mensagem.map((e,key)=>{ 
+            return <div className='mensagensBody'>
+              <div className={
+                e.enviadoPor === usuarioLogado.nome ? 'mensagemDoEmissor' : 'mensagemReceptor'
+              }>
+                 <strong>{e.enviadoPor}</strong> : {e.bodyMsg} </div>
             </div>
           })}
        </div>

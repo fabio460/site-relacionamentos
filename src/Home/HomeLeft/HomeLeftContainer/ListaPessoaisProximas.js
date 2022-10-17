@@ -5,6 +5,7 @@ import ElementoDaLista from './ElementoDaLista'
 import ElementoDaListaMobile from './ElementosDaListaMobile'
 import '../HomeLeft.css'
 import { useSelector } from 'react-redux'
+import { linkRemoto } from '../../../uteis'
 
 
 export default function ListaPessoaisProximas({paginaInicial,paginaFinal,setTamanhoList}) {
@@ -15,7 +16,7 @@ export default function ListaPessoaisProximas({paginaInicial,paginaFinal,setTama
   let search = useSelector(state=>state.SearchReducer.search)
   async function getUsuarios() {
     const link = 'localhost:4000/getUsuarios'
-    const apiRemota = 'https://api-site-relacionamentos.vercel.app/getUsuarios'
+    const apiRemota = linkRemoto+'getUsuarios'
     const listaApi =await fetch(apiRemota).then(res=>res.json())
 
     let listaDeBusca = listaApi.filter(e=>{

@@ -20,7 +20,8 @@
 .HomeRightDados{
     padding: 30px;
     display: grid;
-    grid-template-columns: repeat(3,1fr)
+    grid-template-columns: repeat(3,1fr);
+
 }
 .HomeRigthImg{
     max-height: 400px;
@@ -29,7 +30,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    background-color: white;
+
+    margin: 10px;
+    padding:20px 10px;
+    border-radius: 10px;
 }
 .chatContainer{
     background-color: white;
@@ -83,7 +88,6 @@
 }
 .chatConainerBodyContent::-webkit-scrollbar{
     width: 8px;
-   
 }
 .chatConainerBodyFooter{
     height: 10%;
@@ -92,8 +96,53 @@
     align-items: center;
     
 }
+.HomeRightContainer{
+    background-color: #e3f2fd;  
+    height: calc(100vh - 70px); 
+}
+.elementoVazio{
+    background-color: #e3f2fd;
+    height: calc(100vh - 70px);
+    padding: 5%;
+}
+.elementoVazioBody{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.ImagemSelecionarUsuario{
+    margin-top: 20px;
+    width: 40%;
+}
+.chatConainerBodyContent{
 
+    transform: rotateX(180deg);
+}
 
+.mensagensBody{
+    transform: rotateX(180deg);
+    
+}
+.mensagemReceptor{
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: 7px;
+    text-align: end;
+    background-color: rgb(129, 231, 129);
+    padding: 5px;
+    border-radius: 10px;
+
+}
+.mensagemDoEmissor{
+    margin: 7px;
+    max-width: 70%;
+    margin-right: auto;
+    margin: 10px 0px;
+    background-color: rgb(146, 146, 255);
+    padding: 5px;
+    border-radius: 10px;
+    color: white;
+}
 @media (max-width:400px) {
     .chatContainer{
       width:250px ;
@@ -103,6 +152,7 @@
     }
     .HomeRightContainer{
         width: 100vw;
+        height: 100%;
     }
     .HomeRightHeader{
         height: 120px;
@@ -114,8 +164,11 @@
     }
     .HomeRightDados{
        grid-template-columns: 1fr;
+    
     }
     .HomeRightDadosItems{
         margin-bottom: 40px;
+        min-height: 300px;
     }
+    
 }

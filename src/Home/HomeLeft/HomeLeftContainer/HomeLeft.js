@@ -125,7 +125,7 @@ export default function HomeLeft({handleLayout}) {
   ];
 
   const boxStyle ={
-    bgcolor: '',
+    bgcolor: '#e3f2fd',
     width: "100%",
     position: 'relative',
     minHeight: 200,

@@ -69,7 +69,13 @@ export default function HomeRight() {
               <ChatButton/>
             </div>
           :<div className='elementoVazio'>
-            selecione um elemento
+                <div className='elementoVazioBody'>
+                  <h2>Selecione um profissional ao lado</h2>
+                  <img 
+                    className='ImagemSelecionarUsuario'
+                    src='https://ajuda.simplo7.com.br/hc/article_attachments/5147596042395/adicionar-usuario-no-linux.jpg'
+                  />
+                </div>
           </div>
         }
     

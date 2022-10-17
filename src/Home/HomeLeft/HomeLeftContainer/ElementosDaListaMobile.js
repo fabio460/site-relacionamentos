@@ -8,7 +8,6 @@ export default function ElementoDaListaMobile({item}) {
     // esta constante reducer esta pegando a função la do componente HomeLeft que ira rolar a tela no mobile 
     const handleLeftRight = useSelector(state=>state.functionHandleLeftRight.handleLeftRight)
     const getItem = (item)=>{
-       
         dispath({
          type:'pessoa',
          payload:{pessoaDados:item}

@@ -7,6 +7,8 @@ import EmailIcon from '@mui/icons-material/Email';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import StreetviewIcon from '@mui/icons-material/Streetview';
+import BrunchDiningIcon from '@mui/icons-material/BrunchDining';
+import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
 export default function PerfilEditar() {
   // se hover usuario logado vou mostrar os dados, se não outra tela aparece 
 
@@ -80,7 +82,7 @@ export default function PerfilEditar() {
       setAtualiza(!atualiza)
       setTimeout(() => {
         window.location.reload()
-      }, 300);
+      }, 700);
    }
 
   useEffect(()=>{
@@ -189,7 +191,7 @@ export default function PerfilEditar() {
                   />
             </Typography>
             <Typography sx={{display:'flex',alignItems:'center',margin:'2px 0px'}}>
-                  <Avatar sx={{marginRight:'15px'}}><ApartmentIcon/></Avatar>
+                  <Avatar sx={{marginRight:'15px'}}>< IntegrationInstructionsIcon/></Avatar>
                   <Input
                     defaultValue={userLogged[0].outrasHabilidades}
                     placeholder={userLogged[0].outrasHabilidades}
@@ -198,7 +200,7 @@ export default function PerfilEditar() {
                   />
             </Typography>
             <Typography sx={{display:'flex',alignItems:'center',margin:'2px 0px'}}>
-                  <Avatar sx={{marginRight:'15px'}}><ApartmentIcon/></Avatar>
+                  <Avatar sx={{marginRight:'15px'}}><BrunchDiningIcon/></Avatar>
                   <Input
                     defaultValue={userLogged[0].observacoesFinais}
                     placeholder={userLogged[0].observacoesFinais ? userLogged[0].observacoesFinais : "observacoesFinais" }
@@ -209,7 +211,7 @@ export default function PerfilEditar() {
           </div>
         </div>:
         <div>
-          Logue-se para ver suas informações
+          
         </div>
       }
     </div>

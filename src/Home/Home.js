@@ -89,13 +89,14 @@ export default function Home() {
   })
   return (
     <React.Fragment>
-      <div style={{background:'',height:'70px'}}>
+      <div style={{background:'',height:'70px'  }}>
         <Header/>
       </div>
-      <CssBaseline />
+      <CssBaseline sx={{ background:' #e3f2fd'}}/>
         <div className='btnMobileAppBar'>
           <Tooltip sx={btnStyle}>
-            <ArrowBackIosIcon  onClick={handleLeftRight}/>
+            <ArrowBackIosIcon 
+             onClick={handleLeftRight}/>
           </Tooltip>
         </div>
       
