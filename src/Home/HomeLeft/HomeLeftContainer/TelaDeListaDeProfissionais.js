@@ -35,8 +35,9 @@ export default function ListaDeProfissionais({paginaInicial,paginaFinal,setTaman
     
     var l = listaDeBusca
     let listaSemUsuarioLogado=[]
-    if (localStorage.getItem('usuarioLogado')!=='null' || localStorage.getItem('usuarioLogado')!==null) {
+    if (localStorage.getItem('usuarioLogado')!=='null' || !localStorage.getItem('usuarioLogado')) {
       listaSemUsuarioLogado = l.filter(elem=>{
+        console.log(localStorage.getItem('usuarioLogado'))
         if (usuarioLogado.email !== elem.email) {
           return elem
         }
