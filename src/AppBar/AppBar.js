@@ -97,7 +97,7 @@ export default function Header() {
   }
 
   const deslogar = ()=>{
-    localStorage.setItem('usuarioLogado',null)
+    localStorage.removeItem('usuarioLogado')
     handleMenuClose()
     handleMobileMenuClose();
     window.location.reload()
@@ -119,7 +119,7 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      {user !== 'null'      
+      {user !== null      
       ? <MenuItem onClick={deslogar}>Deslogar</MenuItem>
       : <div>
         <MenuItem onClick={logar}>Logar</MenuItem>
