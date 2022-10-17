@@ -37,12 +37,13 @@ export default function ListaDeProfissionais({paginaInicial,paginaFinal,setTaman
     let listaSemUsuarioLogado=[]
     if (localStorage.getItem('usuarioLogado')!=='null' || !localStorage.getItem('usuarioLogado')) {
       listaSemUsuarioLogado = l.filter(elem=>{
-        console.log(localStorage.getItem('usuarioLogado'))
+        
         if (usuarioLogado.email !== elem.email) {
           return elem
         }
       })
     }else{
+      console.log(localStorage.getItem('usuarioLogado'))
       listaSemUsuarioLogado = l
     }
     let listInterval = listaSemUsuarioLogado.reverse().filter((e,key)=>{
