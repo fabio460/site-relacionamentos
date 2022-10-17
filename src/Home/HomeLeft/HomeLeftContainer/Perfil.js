@@ -28,7 +28,7 @@ export default function Perfil({setPerfilEdit}) {
   useEffect(()=>{
 
     setUsuarioLogado(JSON.parse(localStorage.getItem('usuarioLogado')))
-    if (localStorage.getItem('usuarioLogado')!=='null') {
+    if (localStorage.getItem('usuarioLogado')!==null) {
       getUsuarioPorId()
     }
     
