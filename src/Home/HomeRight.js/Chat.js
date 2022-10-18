@@ -29,10 +29,10 @@ export default function Chat() {
     }
     
     const socket = io.connect(linkRemoto,{
-      withCredentials: true,
-      extraHeaders: {
-        "my-custom-header": "abcd"
-      }
+      withCredentials: false,
+      // extraHeaders: {
+      //   "my-custom-header": "abcd"
+      // }
     });
     useEffect(()=>{
       socket.on("men",async data=>{
