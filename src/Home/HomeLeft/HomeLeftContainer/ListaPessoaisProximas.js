@@ -33,22 +33,22 @@ export default function ListaPessoaisProximas({paginaInicial,paginaFinal,setTama
 
     var filtroPorBairro = []
 
-    // if (localStorage.getItem('usuarioLogado')!=='null') {
+    if (localStorage.getItem('usuarioLogado')!==null) {
       
-    //     filtroPorBairro = l.filter(elem=>{
+        filtroPorBairro = l.filter(elem=>{
           
-    //         if (elem.bairro === usuarioLogado.bairro) {
-    //           console.log(elem.bairro +' - '+usuarioLogado.bairro)
-    //             return elem
-    //         }
-    //     })
-    // }
+            if (elem.bairro === usuarioLogado.bairro) {
+              console.log(elem.bairro +' - '+usuarioLogado.bairro)
+                return elem
+            }
+        })
+    }
     
 
     let listaSemUsuarioLogado=[]
     //listaSemUsuarioLogado = filtroPorBairro
 
-    if (localStorage.getItem('usuarioLogado')!=='null') {
+    if (localStorage.getItem('usuarioLogado')!==null) {
       listaSemUsuarioLogado = l.filter(elem=>{
         if (usuarioLogado.email !== elem.email && elem.bairro === usuarioLogado.bairro) {
           return elem

@@ -10,5 +10,5 @@ export function ramdomColors(cor) {
 }  
 const LinkLocal = 'http://localhost:4000/'
 const LinkRemoto = 'https://api-site-relacionamentos.vercel.app/'
-export const linkRemoto = LinkLocal
+export const linkRemoto = LinkRemoto
 export const linkLocal = 'http://localhost:4000/'
